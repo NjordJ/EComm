@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.iruda.ecomm.presentation.home.screens.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.iruda.ecomm.presentation.category.screens.CategoryFragment"
+        android:label="Category"
+        tools:layout="@layout/fragment_category" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.iruda.ecomm.presentation.cart.screens.CartFragment"
+        android:label="Cart"
+        tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.iruda.ecomm.presentation.account.screens.AccountFragment"
+        android:label="Account"
+        tools:layout="@layout/fragment_account" />
+</navigation>
