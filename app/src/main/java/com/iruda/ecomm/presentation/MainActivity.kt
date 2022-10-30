@@ -1,7 +1,8 @@
-package com.iruda.ecomm
+package com.iruda.ecomm.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.iruda.ecomm.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
