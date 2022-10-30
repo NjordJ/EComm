@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">EComm</string>
 
     <!--App Bar-->
     <string name="appbar_item_search">Search</string>
@@ -10,7 +10,5 @@
     <string name="bottom_appbar_item_category">Category</string>
     <string name="bottom_appbar_item_cart">Cart</string>
     <string name="bottom_appbar_item_account">Account</string>
-
-
 
 </resources>
