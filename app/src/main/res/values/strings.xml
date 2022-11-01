@@ -14,6 +14,10 @@
     <string name="home_page_chip_new">New</string>
     <string name="home_page_chip_discounts">Discounts</string>
     <string name="home_product_image">Product image</string>
+    <string name="cart_product_image">Cart product image</string>
+    <string name="cart_button_decrease_item_count">Button decrease item count</string>
+    <string name="cart_button_increase_item_count">Button increase item count</string>
+    <string name="cart_button_delete_item_from_cart">Button delete item from cart</string>
 
 
 </resources>
