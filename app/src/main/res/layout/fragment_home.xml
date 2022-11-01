@@ -6,13 +6,69 @@
     android:layout_height="match_parent"
     tools:context=".presentation.home.screens.HomeFragment">
 
-    <TextView
+    <androidx.cardview.widget.CardView
+        android:id="@+id/home_card_carousel"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="24dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <org.imaginativeworld.whynotimagecarousel.ImageCarousel
+            android:id="@+id/home_carousel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:imagePlaceholder="@drawable/ic_launcher_background"
+            app:showBottomShadow="false"
+            app:showCaption="false"
+            app:showNavigationButtons="false"
+            app:showTopShadow="false" />
+    </androidx.cardview.widget.CardView>
+
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/home_chips"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/home_card_carousel">
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="All" />
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New" />
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Discounts" />
+
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/home_recycler_view_items"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/home_chips"
+        app:spanCount="2"
+        tools:listitem="@layout/home_product_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

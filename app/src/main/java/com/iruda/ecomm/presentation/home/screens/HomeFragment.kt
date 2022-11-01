@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import com.iruda.ecomm.R
 import com.iruda.ecomm.databinding.FragmentHomeBinding
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 
 class HomeFragment : Fragment(), MenuProvider {
 
@@ -32,6 +33,25 @@ class HomeFragment : Fragment(), MenuProvider {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.homeCarousel.registerLifecycle(viewLifecycleOwner)
+        val carouselItems = mutableListOf<CarouselItem>()
+
+        carouselItems.add(
+            CarouselItem(
+                imageDrawable = R.drawable.ic_launcher_background
+            )
+        )
+        carouselItems.add(
+            CarouselItem(
+                imageDrawable = R.drawable.ic_launcher_background
+            )
+        )
+        carouselItems.add(
+            CarouselItem(
+                imageDrawable = R.drawable.ic_launcher_background
+            )
+        )
+        binding.homeCarousel.setData(carouselItems)
 
     }
 
