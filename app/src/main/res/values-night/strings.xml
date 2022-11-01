@@ -18,5 +18,9 @@
     <string name="cart_button_decrease_item_count">Button decrease item count</string>
     <string name="cart_button_increase_item_count">Button increase item count</string>
     <string name="cart_button_delete_item_from_cart">Button delete item from cart</string>
+    <string name="account_favourite">Favourite</string>
+    <string name="account_about">About</string>
+    <string name="account_settings">Settings</string>
+    <string name="account_user_image">User image</string>
 
 </resources>
