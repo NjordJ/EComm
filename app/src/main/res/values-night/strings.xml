@@ -10,5 +10,9 @@
     <string name="bottom_appbar_item_category">Category</string>
     <string name="bottom_appbar_item_cart">Cart</string>
     <string name="bottom_appbar_item_account">Account</string>
+    <string name="home_page_chip_all">All</string>
+    <string name="home_page_chip_new">New</string>
+    <string name="home_page_chip_discounts">Discounts</string>
+    <string name="home_product_image">Product image</string>
 
 </resources>
