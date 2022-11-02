@@ -5,4 +5,6 @@ import com.iruda.ecomm.domain.category.entities.Category
 interface CategoryRepository {
 
     fun getCategoryList(): List<Category>
+
+    fun getCategory(name: String): Category
 }
