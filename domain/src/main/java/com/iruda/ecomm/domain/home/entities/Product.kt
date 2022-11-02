@@ -10,9 +10,10 @@ data class Product(
     val category: Category,
     val image: String,
     val rating: Rating
-)
+) {
 
-data class Rating(
-    val rate: Double,
-    val count: Int
-)
+    data class Rating(
+        val rate: Double,
+        val count: Int
+    )
+}
