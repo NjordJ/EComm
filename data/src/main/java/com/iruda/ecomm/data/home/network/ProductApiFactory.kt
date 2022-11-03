@@ -3,7 +3,7 @@ package com.iruda.ecomm.data.home.network
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object ApiFactory {
+object ProductApiFactory {
 
     private const val BASE_URL = "https://fakestoreapi.com/"
 
@@ -12,5 +12,5 @@ object ApiFactory {
         .baseUrl(BASE_URL)
         .build()
 
-    val apiService = retrofit.create(ApiService::class.java)
+    val apiService = retrofit.create(ProductApiService::class.java)
 }

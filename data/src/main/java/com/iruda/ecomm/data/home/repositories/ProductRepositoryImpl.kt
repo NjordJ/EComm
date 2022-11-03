@@ -3,8 +3,11 @@ package com.iruda.ecomm.data.home.repositories
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
+import androidx.work.ExistingWorkPolicy
+import androidx.work.WorkManager
 import com.iruda.ecomm.data.global.AppDatabase
 import com.iruda.ecomm.data.home.mappers.ProductMapper
+import com.iruda.ecomm.data.home.workers.RefreshProductsWorker
 import com.iruda.ecomm.domain.home.entities.Product
 import com.iruda.ecomm.domain.home.repositories.ProductRepository
 
@@ -29,5 +32,12 @@ class ProductRepositoryImpl(
         }
     }
 
-
+    override fun loadData() {
+        val workManager = WorkManager.getInstance(application)
+        workManager.enqueueUniqueWork(
+            RefreshProductsWorker.NAME,
+            ExistingWorkPolicy.REPLACE,
+            RefreshProductsWorker.makeRequest()
+        )
+    }
 }

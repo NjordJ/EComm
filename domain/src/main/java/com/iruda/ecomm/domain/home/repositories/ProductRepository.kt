@@ -8,4 +8,6 @@ interface ProductRepository {
     fun getProductList(): LiveData<List<Product>>
 
     fun getProduct(id: Int): LiveData<Product>
+
+    fun loadData()
 }
