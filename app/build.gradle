@@ -4,7 +4,6 @@ plugins {
 
     id("kotlin-kapt")
     id 'androidx.navigation.safeargs.kotlin'
-    id 'kotlin-parcelize'
 }
 
 android {
@@ -62,11 +61,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-common-java8:$lifecycle_version")
 
-    // Room
-    implementation("androidx.room:room-runtime:$room_version")
-    kapt("androidx.room:room-compiler:$room_version")
-    implementation("androidx.room:room-ktx:$room_version")
-
     // Coroutines
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version")
@@ -77,21 +71,12 @@ dependencies {
     implementation "io.insert-koin:koin-androidx-workmanager:$koin_android_version"
     implementation "io.insert-koin:koin-androidx-navigation:$koin_android_version"
 
-    //DataStore
-    implementation("androidx.datastore:datastore-preferences:$datastore_version")
-
-    // Retrofit + GSON
-    implementation ("com.squareup.retrofit2:retrofit:$retrofit_version")
-    implementation ("com.squareup.retrofit2:converter-gson:$retrofit_version")
-
     // Glide
     implementation ("com.github.bumptech.glide:glide:$glide_version")
 
     // Paging 3
     implementation("androidx.paging:paging-runtime:$paging_version")
 
-    // Workmanager
-    implementation "androidx.work:work-runtime-ktx:$workmanager_version"
-
+    // Carousel
     implementation 'org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.1.0'
 }
