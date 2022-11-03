@@ -8,6 +8,20 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.6.10' apply false
 }
 
+ext {
+    navigation_version = "2.5.3"
+    lifecycle_version = "2.5.1"
+    room_version = "2.4.3"
+    coroutines_version = "1.6.4"
+    koin_core_version = "3.2.2"
+    koin_android_version = "3.3.0"
+    datastore_version = "1.0.0"
+    retrofit_version = "2.9.0"
+    glide_version = "4.14.2"
+    paging_version = "3.1.1"
+    workmanager_version = "2.7.1"
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
