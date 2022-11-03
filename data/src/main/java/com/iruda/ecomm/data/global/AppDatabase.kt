@@ -10,8 +10,8 @@ import com.iruda.ecomm.data.home.models.ProductModel
 import com.iruda.ecomm.data.home.models.RatingModel
 
 @Database(
-    entities = [ProductModel::class, CategoryModel::class],
-    version = 1,
+    entities = [ProductModel::class, RatingModel::class, CategoryModel::class],
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

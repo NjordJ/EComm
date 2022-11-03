@@ -12,7 +12,7 @@ data class ProductModel(
     val title: String,
     val price: Double,
     val description: String,
-    @Embedded(prefix = "category_") val category: Category,
+    val category: String,
     val image: String,
     @Embedded(prefix = "rating_") val rating: RatingModel
 )

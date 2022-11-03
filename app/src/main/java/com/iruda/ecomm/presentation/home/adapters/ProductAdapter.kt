@@ -30,8 +30,9 @@ class ProductAdapter(
         with(holder.binding) {
             with(product) {
                 textViewProductName.text = title
-                textViewProductCategory.text = category.name
+                textViewProductCategory.text = category
                 textViewProductPrice.text = price.toString()
+                textViewProductRatingValue.text = rating.rate.toString()
                 Glide.with(holder.itemView)
                     .load(image)
                     .centerCrop()

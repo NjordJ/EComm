@@ -12,5 +12,5 @@ object ProductApiFactory {
         .baseUrl(BASE_URL)
         .build()
 
-    val apiService = retrofit.create(ProductApiService::class.java)
+    val apiService: ProductApiService = retrofit.create(ProductApiService::class.java)
 }
