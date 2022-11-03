@@ -18,8 +18,6 @@ class RefreshProductsWorker(
     private val coinInfoDao = AppDatabase.getInstance(context).productDao()
     private val apiService = ProductApiFactory.apiService
 
-    private val mapper = ProductMapper()
-
     override suspend fun doWork(): Result {
         while (true) {
             try {

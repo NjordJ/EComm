@@ -4,10 +4,16 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.iruda.ecomm.data.category.models.CategoryModel
 import com.iruda.ecomm.data.home.database.ProductDao
 import com.iruda.ecomm.data.home.models.ProductModel
+import com.iruda.ecomm.data.home.models.RatingModel
 
-@Database(entities = [ProductModel::class], version = 1, exportSchema = false)
+@Database(
+    entities = [ProductModel::class, RatingModel::class, CategoryModel::class],
+    version = 3,
+    exportSchema = false
+)
 abstract class AppDatabase : RoomDatabase() {
 
     companion object {
