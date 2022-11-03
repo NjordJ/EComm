@@ -1,6 +1,7 @@
 package com.iruda.ecomm.data.home.mappers
 
 import com.iruda.ecomm.data.home.models.ProductModel
+import com.iruda.ecomm.data.home.models.RatingModel
 import com.iruda.ecomm.domain.home.entities.Product
 
 class ProductMapper {
@@ -15,7 +16,7 @@ class ProductMapper {
         rating = mapModelRatingToEntityRating(model.rating)
     )
 
-    private fun mapModelRatingToEntityRating(model: ProductModel.Rating) = Product.Rating(
+    private fun mapModelRatingToEntityRating(model: RatingModel) = Product.Rating(
         rate = model.rate,
         count = model.count
     )
@@ -30,7 +31,7 @@ class ProductMapper {
         rating = mapEntityRatingToModelRating(entity.rating)
     )
 
-    private fun mapEntityRatingToModelRating(entity: Product.Rating) = ProductModel.Rating(
+    private fun mapEntityRatingToModelRating(entity: Product.Rating) = RatingModel(
         rate = entity.rate,
         count = entity.count
     )
