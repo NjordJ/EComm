@@ -6,5 +6,5 @@ import retrofit2.http.GET
 interface CategoryApiService {
 
     @GET("products/categories")
-    suspend fun getAllCategories(): List<CategoryModel>
+    suspend fun getAllCategories(): List<String>
 }

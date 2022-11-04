@@ -8,4 +8,8 @@ class CategoryMapper {
     fun mapModelToEntity(model: CategoryModel) = Category(
         name = model.name
     )
+
+    fun mapStringToModel(category: String) = CategoryModel(
+        name = category
+    )
 }

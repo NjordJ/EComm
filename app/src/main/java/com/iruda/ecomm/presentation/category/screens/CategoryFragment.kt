@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.iruda.ecomm.R
 import com.iruda.ecomm.databinding.FragmentCategoryBinding
 import com.iruda.ecomm.presentation.category.adapters.CategoryAdapter
-import com.iruda.ecomm.presentation.home.screens.viewmodels.CategoryViewModel
+import com.iruda.ecomm.presentation.category.viewmodels.CategoryViewModel
 
 class CategoryFragment : Fragment(), MenuProvider {
 

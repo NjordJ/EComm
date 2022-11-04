@@ -1,4 +1,4 @@
-package com.iruda.ecomm.presentation.home.screens.viewmodels
+package com.iruda.ecomm.presentation.category.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -18,7 +18,7 @@ class CategoryViewModel(application: Application) : AndroidViewModel(application
     val categoryList = getCategoryListUseCase()
 
     init {
-        loadCategoryDataUseCase
+        loadCategoryDataUseCase()
     }
 
     fun getDetailCategoryInfo(name: String) = getCategoryUseCase(name = name)
