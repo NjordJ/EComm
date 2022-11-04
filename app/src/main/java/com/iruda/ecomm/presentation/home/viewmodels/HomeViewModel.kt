@@ -21,6 +21,6 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         loadProductDataUseCase()
     }
 
-    fun getDetailProductInfo(id: Int) = getProductUseCase(id)
+    fun getDetailProductInfo(id: Int) = getProductUseCase(id = id)
 
 }

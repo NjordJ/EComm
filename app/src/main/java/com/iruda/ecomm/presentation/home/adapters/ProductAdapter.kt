@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.iruda.ecomm.R
-import com.iruda.ecomm.databinding.HomeProductItemBinding
+import com.iruda.ecomm.databinding.ProductItemBinding
 import com.iruda.ecomm.domain.home.entities.Product
 
 class ProductAdapter(
@@ -17,7 +17,7 @@ class ProductAdapter(
     var onProductClickListener: OnProductClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        val binding = HomeProductItemBinding.inflate(
+        val binding = ProductItemBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false

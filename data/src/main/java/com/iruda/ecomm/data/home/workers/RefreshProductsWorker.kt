@@ -15,14 +15,14 @@ class RefreshProductsWorker(
     workerParameters: WorkerParameters
 ) : CoroutineWorker(context, workerParameters) {
 
-    private val coinInfoDao = AppDatabase.getInstance(context).productDao()
+    private val productDao = AppDatabase.getInstance(context).productDao()
     private val apiService = ProductApiFactory.apiService
 
     override suspend fun doWork(): Result {
         while (true) {
             try {
                 val products = apiService.getAllProducts()
-                coinInfoDao.insertProductList(products)
+                productDao.insertProductList(products)
             } catch (e: Exception) {
             }
             delay(10000)

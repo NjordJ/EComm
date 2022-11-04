@@ -38,15 +38,15 @@ class HomeFragment : Fragment(), MenuProvider {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = ProductAdapter(requireContext())
-
         createCarousel()
+        observeViewModel()
+    }
+
+    private fun observeViewModel() {
+        val adapter = ProductAdapter(requireContext())
 
         binding.recyclerViewHomeProducts.adapter = adapter
         binding.recyclerViewHomeProducts.itemAnimator = null
-//        viewModel.productList.observe(viewLifecycleOwner) {
-//            adapter.submitList(it)
-//        }
 
         viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         viewModel.productList.observe(viewLifecycleOwner) {
