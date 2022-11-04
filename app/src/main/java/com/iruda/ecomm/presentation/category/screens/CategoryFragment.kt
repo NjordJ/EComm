@@ -7,10 +7,15 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import com.iruda.ecomm.R
 import com.iruda.ecomm.databinding.FragmentCategoryBinding
+import com.iruda.ecomm.presentation.category.adapters.CategoryAdapter
+import com.iruda.ecomm.presentation.home.screens.viewmodels.CategoryViewModel
 
 class CategoryFragment : Fragment(), MenuProvider {
+
+    private lateinit var viewModel: CategoryViewModel
 
     private var _binding: FragmentCategoryBinding? = null
     private val binding: FragmentCategoryBinding
@@ -32,7 +37,19 @@ class CategoryFragment : Fragment(), MenuProvider {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        observeViewModel()
+    }
 
+    private fun observeViewModel() {
+        val adapter = CategoryAdapter(requireContext())
+
+        binding.recyclerViewCategories.adapter = adapter
+        binding.recyclerViewCategories.itemAnimator = null
+
+        viewModel = ViewModelProvider(this)[CategoryViewModel::class.java]
+        viewModel.categoryList.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
     }
 
     override fun onDestroy() {

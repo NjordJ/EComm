@@ -1,4 +1,4 @@
-package com.iruda.ecomm.presentation.category.viewmodels
+package com.iruda.ecomm.presentation.home.screens.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
