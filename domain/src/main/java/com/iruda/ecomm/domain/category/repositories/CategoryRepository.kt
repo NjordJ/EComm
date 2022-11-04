@@ -8,4 +8,6 @@ interface CategoryRepository {
     fun getCategoryList(): LiveData<List<Category>>
 
     fun getCategory(name: String): LiveData<Category>
+
+    fun loadData()
 }

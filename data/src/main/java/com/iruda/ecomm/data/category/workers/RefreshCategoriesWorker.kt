@@ -1,28 +1,28 @@
-package com.iruda.ecomm.data.home.workers
+package com.iruda.ecomm.data.category.workers
 
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkerParameters
+import com.iruda.ecomm.data.category.network.CategoryApiFactory
 import com.iruda.ecomm.data.global.AppDatabase
-import com.iruda.ecomm.data.home.mappers.ProductMapper
-import com.iruda.ecomm.data.home.network.ProductApiFactory
 import kotlinx.coroutines.delay
 
-class RefreshProductsWorker(
+class RefreshCategoriesWorker(
     context: Context,
     workerParameters: WorkerParameters
 ) : CoroutineWorker(context, workerParameters) {
 
-    private val productDao = AppDatabase.getInstance(context).productDao()
-    private val apiService = ProductApiFactory.apiService
+    private val categoryDao = AppDatabase.getInstance(context).categoryDao()
+    private val apiService = CategoryApiFactory.apiService
 
     override suspend fun doWork(): Result {
+
         while (true) {
             try {
-                val products = apiService.getAllProducts()
-                productDao.insertProductList(products)
+                val categories = apiService.getAllCategories()
+                categoryDao.insertCategoryList(categories)
             } catch (e: Exception) {
             }
             delay(10000)
@@ -31,10 +31,10 @@ class RefreshProductsWorker(
 
     companion object {
 
-        const val NAME = "RefreshProductWorker"
+        const val NAME = "RefreshCategoryWorker"
 
         fun makeRequest(): OneTimeWorkRequest {
-            return OneTimeWorkRequestBuilder<RefreshProductsWorker>().build()
+            return OneTimeWorkRequestBuilder<RefreshCategoriesWorker>().build()
         }
     }
 }
