@@ -14,7 +14,11 @@
         android:id="@+id/categoryFragment"
         android:name="com.iruda.ecomm.presentation.category.screens.CategoryFragment"
         android:label="Category"
-        tools:layout="@layout/fragment_category" />
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_categoryFragment_to_productsInCategoryFragment"
+            app:destination="@id/productsInCategoryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.iruda.ecomm.presentation.cart.screens.CartFragment"
@@ -25,4 +29,13 @@
         android:name="com.iruda.ecomm.presentation.account.screens.AccountFragment"
         android:label="Account"
         tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/productsInCategoryFragment"
+        android:name="com.iruda.ecomm.presentation.category.screens.ProductsInCategoryFragment"
+        android:label="{categoryName}"
+        tools:layout="@layout/fragment_products_in_category">
+        <argument
+            android:name="categoryName"
+            app:argType="string" />
+    </fragment>
 </navigation>

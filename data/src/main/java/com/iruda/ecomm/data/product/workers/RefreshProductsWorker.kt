@@ -1,4 +1,4 @@
-package com.iruda.ecomm.data.home.workers
+package com.iruda.ecomm.data.product.workers
 
 import android.content.Context
 import androidx.work.CoroutineWorker
@@ -6,8 +6,7 @@ import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkerParameters
 import com.iruda.ecomm.data.global.AppDatabase
-import com.iruda.ecomm.data.home.mappers.ProductMapper
-import com.iruda.ecomm.data.home.network.ProductApiFactory
+import com.iruda.ecomm.data.product.network.ProductApiFactory
 import kotlinx.coroutines.delay
 
 class RefreshProductsWorker(

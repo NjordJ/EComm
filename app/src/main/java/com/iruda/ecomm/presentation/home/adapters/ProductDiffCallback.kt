@@ -1,7 +1,7 @@
 package com.iruda.ecomm.presentation.home.adapters
 
 import androidx.recyclerview.widget.DiffUtil
-import com.iruda.ecomm.domain.home.entities.Product
+import com.iruda.ecomm.domain.product.entities.Product
 
 class ProductDiffCallback : DiffUtil.ItemCallback<Product>() {
 

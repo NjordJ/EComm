@@ -1,4 +1,4 @@
-package com.iruda.ecomm.data.home.network
+package com.iruda.ecomm.data.product.network
 
 import com.iruda.ecomm.data.global.ApiFactory
 import retrofit2.Retrofit
