@@ -6,6 +6,7 @@ import androidx.lifecycle.Transformations
 import androidx.work.ExistingWorkPolicy
 import androidx.work.WorkManager
 import com.iruda.ecomm.data.category.mappers.CategoryMapper
+import com.iruda.ecomm.data.category.network.CategoryApiFactory
 import com.iruda.ecomm.data.category.workers.RefreshCategoriesWorker
 import com.iruda.ecomm.data.global.AppDatabase
 import com.iruda.ecomm.domain.category.entities.Category
@@ -16,6 +17,7 @@ class CategoryRepositoryImpl(
 ) : CategoryRepository {
 
     private val categoryDao = AppDatabase.getInstance(application).categoryDao()
+    private val apiService = CategoryApiFactory.apiService
     private val mapper = CategoryMapper()
 
     override fun getCategoryList(): LiveData<List<Category>> {

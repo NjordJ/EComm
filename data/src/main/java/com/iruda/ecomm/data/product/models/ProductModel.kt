@@ -1,9 +1,8 @@
-package com.iruda.ecomm.data.home.models
+package com.iruda.ecomm.data.product.models
 
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.iruda.ecomm.domain.category.entities.Category
 
 @Entity(tableName = "product_table")
 data class ProductModel(

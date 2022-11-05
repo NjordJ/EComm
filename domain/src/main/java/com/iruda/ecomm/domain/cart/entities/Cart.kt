@@ -1,7 +1,7 @@
 package com.iruda.ecomm.domain.cart.entities
 
 import com.iruda.ecomm.domain.account.entities.User
-import com.iruda.ecomm.domain.home.entities.Product
+import com.iruda.ecomm.domain.product.entities.Product
 
 data class Cart(
     val id: Int,

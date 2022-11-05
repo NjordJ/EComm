@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.iruda.ecomm.R
 import com.iruda.ecomm.databinding.ProductItemBinding
-import com.iruda.ecomm.domain.home.entities.Product
+import com.iruda.ecomm.domain.product.entities.Product
 
 class ProductAdapter(
     private val context: Context

@@ -1,6 +1,6 @@
-package com.iruda.ecomm.domain.home.usecases
+package com.iruda.ecomm.domain.product.usecases
 
-import com.iruda.ecomm.domain.home.repositories.ProductRepository
+import com.iruda.ecomm.domain.product.repositories.ProductRepository
 
 class LoadProductDataUseCase(
     private val repository: ProductRepository

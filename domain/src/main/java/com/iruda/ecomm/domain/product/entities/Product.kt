@@ -1,4 +1,4 @@
-package com.iruda.ecomm.domain.home.entities
+package com.iruda.ecomm.domain.product.entities
 
 data class Product(
     val id: Int,

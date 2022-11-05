@@ -6,9 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.iruda.ecomm.data.category.database.CategoryDao
 import com.iruda.ecomm.data.category.models.CategoryModel
-import com.iruda.ecomm.data.home.database.ProductDao
-import com.iruda.ecomm.data.home.models.ProductModel
-import com.iruda.ecomm.data.home.models.RatingModel
+import com.iruda.ecomm.data.product.database.ProductDao
+import com.iruda.ecomm.data.product.models.ProductModel
+import com.iruda.ecomm.data.product.models.RatingModel
 
 @Database(
     entities = [ProductModel::class, RatingModel::class, CategoryModel::class],

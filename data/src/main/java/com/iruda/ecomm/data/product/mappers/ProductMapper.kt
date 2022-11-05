@@ -1,8 +1,8 @@
-package com.iruda.ecomm.data.home.mappers
+package com.iruda.ecomm.data.product.mappers
 
-import com.iruda.ecomm.data.home.models.ProductModel
-import com.iruda.ecomm.data.home.models.RatingModel
-import com.iruda.ecomm.domain.home.entities.Product
+import com.iruda.ecomm.data.product.models.ProductModel
+import com.iruda.ecomm.data.product.models.RatingModel
+import com.iruda.ecomm.domain.product.entities.Product
 
 class ProductMapper {
 
