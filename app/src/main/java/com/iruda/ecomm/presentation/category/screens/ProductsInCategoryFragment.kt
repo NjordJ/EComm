@@ -1,6 +1,7 @@
 package com.iruda.ecomm.presentation.category.screens
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
@@ -8,20 +9,23 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import com.iruda.ecomm.R
-import com.iruda.ecomm.databinding.FragmentCategoryBinding
-import com.iruda.ecomm.domain.category.entities.Category
-import com.iruda.ecomm.presentation.category.adapters.CategoryAdapter
-import com.iruda.ecomm.presentation.category.viewmodels.CategoryViewModel
+import com.iruda.ecomm.databinding.FragmentProductsInCategoryBinding
+import com.iruda.ecomm.presentation.category.viewmodels.ProductsInCategoryViewModel
+import com.iruda.ecomm.presentation.home.adapters.ProductAdapter
+import kotlinx.coroutines.launch
 
-class CategoryFragment : Fragment(), MenuProvider {
+class ProductsInCategoryFragment : Fragment(), MenuProvider {
 
-    private lateinit var viewModel: CategoryViewModel
+    private lateinit var viewModel: ProductsInCategoryViewModel
 
-    private var _binding: FragmentCategoryBinding? = null
-    private val binding: FragmentCategoryBinding
-        get() = _binding ?: throw  RuntimeException("FragmentCategoryBinding is null")
+    private val args: ProductsInCategoryFragmentArgs by navArgs()
+
+    private var _binding: FragmentProductsInCategoryBinding? = null
+    private val binding: FragmentProductsInCategoryBinding
+        get() = _binding ?: throw  RuntimeException("FragmentProductsInCategoryBinding is null")
 
     private lateinit var searchView: SearchView
 
@@ -30,7 +34,7 @@ class CategoryFragment : Fragment(), MenuProvider {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCategoryBinding.inflate(inflater, container, false)
+        _binding = FragmentProductsInCategoryBinding.inflate(inflater, container, false)
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
         return binding.root
@@ -43,26 +47,20 @@ class CategoryFragment : Fragment(), MenuProvider {
     }
 
     private fun observeViewModel() {
-        val adapter = CategoryAdapter(requireContext())
+        val adapter = ProductAdapter(requireContext())
 
-        adapter.onCategoryClickListener = object : CategoryAdapter.OnCategoryClickListener {
+        binding.recyclerViewProductsInCategory.adapter = adapter
+        binding.recyclerViewProductsInCategory.itemAnimator = null
 
-            override fun onCategoryClick(category: Category) {
-                val action =
-                    CategoryFragmentDirections.actionCategoryFragmentToProductsInCategoryFragment(
-                        category.name
-                    )
-                findNavController().navigate(action)
+        viewModel = ViewModelProvider(this)[ProductsInCategoryViewModel::class.java]
+
+        //TODO: List in log showing more than one time somehow
+        lifecycleScope.launch {
+            viewModel.getProductsInCategory(args.categoryName).observe(viewLifecycleOwner) {
+                adapter.submitList(it)
             }
         }
 
-        binding.recyclerViewCategories.adapter = adapter
-        binding.recyclerViewCategories.itemAnimator = null
-
-        viewModel = ViewModelProvider(this)[CategoryViewModel::class.java]
-        viewModel.categoryList.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
-        }
     }
 
     override fun onDestroy() {
