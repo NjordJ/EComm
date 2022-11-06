@@ -2,20 +2,20 @@ package com.iruda.ecomm.presentation.home.viewmodels
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.switchMap
 import com.iruda.ecomm.data.product.repositories.ProductRepositoryImpl
-import com.iruda.ecomm.domain.product.entities.Product
 import com.iruda.ecomm.domain.product.usecases.GetProductListUseCase
 import com.iruda.ecomm.domain.product.usecases.GetProductUseCase
 import com.iruda.ecomm.domain.product.usecases.LoadProductDataUseCase
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.launch
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = ProductRepositoryImpl(application)
 
-    private val _searchQuery = MutableLiveData<String>(EMPTY_SEARCH)
+    private val _searchQuery = MutableLiveData<String>()
     val searchQuery: LiveData<String>
         get() = _searchQuery
 
@@ -23,20 +23,21 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val getProductListUseCase = GetProductListUseCase(repository)
     private val loadProductDataUseCase = LoadProductDataUseCase(repository)
 
-    var productList: LiveData<List<Product>> =
-        getProductListUseCase(searchQuery = _searchQuery.value.toString())
+    val productList = _searchQuery.switchMap {
+        if (it.isNullOrEmpty()) {
+            getProductListUseCase(searchQuery = EMPTY_SEARCH)
+        } else {
+            getProductListUseCase(searchQuery = it)
+        }
+    }
 
     init {
         loadProductDataUseCase()
     }
 
-    fun postSearch(value: String) {
-        Log.d("SearchView", value)
-        _searchQuery.value = value
-    }
-
-    fun updateProductList(query: String) {
-        productList = getProductListUseCase(searchQuery = query)
+    fun postSearch(query: String) {
+        Log.d("SearchView", query)
+        _searchQuery.value = query
     }
 
     fun getDetailProductInfo(id: Int) = getProductUseCase(id = id)

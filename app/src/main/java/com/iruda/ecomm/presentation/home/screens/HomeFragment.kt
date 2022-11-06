@@ -1,7 +1,6 @@
 package com.iruda.ecomm.presentation.home.screens
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
@@ -41,8 +40,11 @@ class HomeFragment : Fragment(), MenuProvider {
         super.onViewCreated(view, savedInstanceState)
 
         createCarousel()
-        //observeViewModel()
+        observeViewModel()
 
+    }
+
+    private fun observeViewModel() {
         val adapter = ProductAdapter(requireContext())
 
         binding.recyclerViewHomeProducts.adapter = adapter
@@ -52,11 +54,6 @@ class HomeFragment : Fragment(), MenuProvider {
         viewModel.productList.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
-
-    }
-
-    private fun observeViewModel() {
-
     }
 
     private fun createCarousel() {
@@ -99,8 +96,9 @@ class HomeFragment : Fragment(), MenuProvider {
         }
 
         searchView.onQueryTextChanged {
-            viewModel.updateProductList(query = it)
+            viewModel.postSearch(query = it)
         }
+
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
