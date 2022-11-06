@@ -20,8 +20,12 @@ class ProductRepositoryImpl(
     private val apiService = ProductApiFactory.apiService
     private val mapper = ProductMapper()
 
-    override fun getProductList(): LiveData<List<Product>> {
-        return Transformations.map(productDao.getProductList()) {
+    override fun getProductList(searchQuery: String): LiveData<List<Product>> {
+        return Transformations.map(
+            productDao.getProductList(
+                searchQuery = searchQuery
+            )
+        ) {
             it.map { model ->
                 mapper.mapModelToEntity(model = model)
             }

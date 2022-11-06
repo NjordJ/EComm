@@ -5,7 +5,7 @@ import com.iruda.ecomm.domain.product.entities.Product
 
 interface ProductRepository {
 
-    fun getProductList(): LiveData<List<Product>>
+    fun getProductList(searchQuery: String): LiveData<List<Product>>
 
     fun getProduct(id: Int): LiveData<Product>
 

@@ -10,8 +10,8 @@ import com.iruda.ecomm.data.product.models.ProductModel
 @Dao
 interface ProductDao {
 
-    @Query("SELECT * FROM product_table")
-    fun getProductList(): LiveData<List<ProductModel>>
+    @Query("SELECT * FROM product_table WHERE title LIKE '%' || :searchQuery || '%'")
+    fun getProductList(searchQuery: String): LiveData<List<ProductModel>>
 
     @Query("SELECT * FROM product_table WHERE id == :id LIMIT 1")
     fun getProduct(id: Int): LiveData<ProductModel>

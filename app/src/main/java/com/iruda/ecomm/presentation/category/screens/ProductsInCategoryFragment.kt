@@ -1,7 +1,6 @@
 package com.iruda.ecomm.presentation.category.screens
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost

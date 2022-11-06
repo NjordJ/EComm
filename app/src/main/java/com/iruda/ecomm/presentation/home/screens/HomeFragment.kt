@@ -1,6 +1,7 @@
 package com.iruda.ecomm.presentation.home.screens
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
@@ -12,6 +13,7 @@ import com.iruda.ecomm.R
 import com.iruda.ecomm.databinding.FragmentHomeBinding
 import com.iruda.ecomm.presentation.home.adapters.ProductAdapter
 import com.iruda.ecomm.presentation.home.viewmodels.HomeViewModel
+import com.iruda.ecomm.util.onQueryTextChanged
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 
 class HomeFragment : Fragment(), MenuProvider {
@@ -39,10 +41,8 @@ class HomeFragment : Fragment(), MenuProvider {
         super.onViewCreated(view, savedInstanceState)
 
         createCarousel()
-        observeViewModel()
-    }
+        //observeViewModel()
 
-    private fun observeViewModel() {
         val adapter = ProductAdapter(requireContext())
 
         binding.recyclerViewHomeProducts.adapter = adapter
@@ -52,6 +52,11 @@ class HomeFragment : Fragment(), MenuProvider {
         viewModel.productList.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
+
+    }
+
+    private fun observeViewModel() {
+
     }
 
     private fun createCarousel() {
@@ -86,13 +91,20 @@ class HomeFragment : Fragment(), MenuProvider {
 
         val searchItem = menu.findItem(R.id.search_action_appbar)
         searchView = searchItem.actionView as SearchView
+
+        val pendingQuery = viewModel.searchQuery.value
+        if (pendingQuery != null && pendingQuery.isNotEmpty()) {
+            searchItem.expandActionView()
+            searchView.setQuery(pendingQuery, false)
+        }
+
+        searchView.onQueryTextChanged {
+            viewModel.updateProductList(query = it)
+        }
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         return when (menuItem.itemId) {
-            R.id.search_action_appbar -> {
-                true
-            }
             R.id.notification_action_appbar -> {
                 true
             }
