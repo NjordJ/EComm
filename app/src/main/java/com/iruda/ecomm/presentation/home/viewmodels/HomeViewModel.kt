@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.switchMap
 import com.iruda.ecomm.data.product.repositories.ProductRepositoryImpl
+import com.iruda.ecomm.domain.product.entities.Product
 import com.iruda.ecomm.domain.product.usecases.GetProductListUseCase
 import com.iruda.ecomm.domain.product.usecases.GetProductUseCase
 import com.iruda.ecomm.domain.product.usecases.LoadProductDataUseCase
@@ -33,10 +34,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         loadProductDataUseCase()
+        _searchQuery.value = EMPTY_SEARCH
     }
 
     fun postSearch(query: String) {
-        Log.d("SearchView", query)
         _searchQuery.value = query
     }
 
