@@ -11,5 +11,5 @@ interface ProductRepository {
 
     fun loadData()
 
-    suspend fun getProductListInCategory(categoryName: String): LiveData<List<Product>>
+    fun getProductListInCategory(categoryName: String, searchQuery: String): LiveData<List<Product>>
 }

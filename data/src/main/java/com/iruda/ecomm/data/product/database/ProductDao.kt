@@ -19,6 +19,12 @@ interface ProductDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertProductList(products: List<ProductModel>)
 
-    @Query("SELECT * FROM product_table WHERE category == :categoryName")
-    fun getProductListInCategory(categoryName: String): LiveData<List<ProductModel>>
+    @Query(
+        "SELECT * FROM product_table WHERE category == :categoryName " +
+                "AND title LIKE '%' || :searchQuery || '%'"
+    )
+    fun getProductListInCategory(
+        categoryName: String,
+        searchQuery: String
+    ): LiveData<List<ProductModel>>
 }

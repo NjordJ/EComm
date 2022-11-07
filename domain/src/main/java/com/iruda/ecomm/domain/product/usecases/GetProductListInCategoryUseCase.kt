@@ -8,6 +8,9 @@ class GetProductListInCategoryUseCase(
     private val repository: ProductRepository
 ) {
 
-    suspend operator fun invoke(categoryName: String): LiveData<List<Product>> =
-        repository.getProductListInCategory(categoryName)
+    operator fun invoke(
+        categoryName: String,
+        searchQuery: String
+    ): LiveData<List<Product>> =
+        repository.getProductListInCategory(categoryName = categoryName, searchQuery = searchQuery)
 }
