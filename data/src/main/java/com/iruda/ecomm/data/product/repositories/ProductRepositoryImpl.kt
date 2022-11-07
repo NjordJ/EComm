@@ -7,7 +7,6 @@ import androidx.work.ExistingWorkPolicy
 import androidx.work.WorkManager
 import com.iruda.ecomm.data.global.AppDatabase
 import com.iruda.ecomm.data.product.mappers.ProductMapper
-import com.iruda.ecomm.data.product.network.ProductApiFactory
 import com.iruda.ecomm.data.product.workers.RefreshProductsWorker
 import com.iruda.ecomm.domain.product.entities.Product
 import com.iruda.ecomm.domain.product.repositories.ProductRepository
@@ -17,11 +16,14 @@ class ProductRepositoryImpl(
 ) : ProductRepository {
 
     private val productDao = AppDatabase.getInstance(application).productDao()
-    private val apiService = ProductApiFactory.apiService
     private val mapper = ProductMapper()
 
-    override fun getProductList(): LiveData<List<Product>> {
-        return Transformations.map(productDao.getProductList()) {
+    override fun getProductList(searchQuery: String): LiveData<List<Product>> {
+        return Transformations.map(
+            productDao.getProductList(
+                searchQuery = searchQuery
+            )
+        ) {
             it.map { model ->
                 mapper.mapModelToEntity(model = model)
             }
@@ -43,10 +45,15 @@ class ProductRepositoryImpl(
         )
     }
 
-    override suspend fun getProductListInCategory(categoryName: String): LiveData<List<Product>> {
-        //val products = apiService.getProductListInCategory(categoryName)
+    override fun getProductListInCategory(
+        categoryName: String, searchQuery: String
+    ): LiveData<List<Product>> {
         val category: String = categoryName.replaceFirstChar { it.lowercase() }
-        return Transformations.map(productDao.getProductListInCategory(categoryName = category)) {
+        return Transformations.map(
+            productDao.getProductListInCategory(
+                categoryName = category, searchQuery = searchQuery
+            )
+        ) {
             it.map { model ->
                 mapper.mapModelToEntity(model = model)
             }

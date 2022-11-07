@@ -8,5 +8,6 @@ class GetCategoryListUseCase(
     private val repository: CategoryRepository
 ) {
 
-    operator fun invoke(): LiveData<List<Category>> = repository.getCategoryList()
+    operator fun invoke(searchQuery: String): LiveData<List<Category>> =
+        repository.getCategoryList(searchQuery = searchQuery)
 }

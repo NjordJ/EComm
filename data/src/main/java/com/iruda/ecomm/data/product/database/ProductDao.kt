@@ -10,8 +10,8 @@ import com.iruda.ecomm.data.product.models.ProductModel
 @Dao
 interface ProductDao {
 
-    @Query("SELECT * FROM product_table")
-    fun getProductList(): LiveData<List<ProductModel>>
+    @Query("SELECT * FROM product_table WHERE title LIKE '%' || :searchQuery || '%'")
+    fun getProductList(searchQuery: String): LiveData<List<ProductModel>>
 
     @Query("SELECT * FROM product_table WHERE id == :id LIMIT 1")
     fun getProduct(id: Int): LiveData<ProductModel>
@@ -19,6 +19,12 @@ interface ProductDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertProductList(products: List<ProductModel>)
 
-    @Query("SELECT * FROM product_table WHERE category == :categoryName")
-    fun getProductListInCategory(categoryName: String): LiveData<List<ProductModel>>
+    @Query(
+        "SELECT * FROM product_table WHERE category == :categoryName " +
+                "AND title LIKE '%' || :searchQuery || '%'"
+    )
+    fun getProductListInCategory(
+        categoryName: String,
+        searchQuery: String
+    ): LiveData<List<ProductModel>>
 }

@@ -10,8 +10,8 @@ import com.iruda.ecomm.data.category.models.CategoryModel
 @Dao
 interface CategoryDao {
 
-    @Query("SELECT * FROM category_table")
-    fun getCategoryList(): LiveData<List<CategoryModel>>
+    @Query("SELECT * FROM category_table WHERE name LIKE '%' || :searchQuery || '%'")
+    fun getCategoryList(searchQuery: String): LiveData<List<CategoryModel>>
 
     @Query("SELECT * FROM category_table WHERE name == :name LIMIT 1")
     fun getCategory(name: String): LiveData<CategoryModel>

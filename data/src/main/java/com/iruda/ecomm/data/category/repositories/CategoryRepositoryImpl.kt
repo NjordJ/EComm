@@ -20,8 +20,8 @@ class CategoryRepositoryImpl(
     private val apiService = CategoryApiFactory.apiService
     private val mapper = CategoryMapper()
 
-    override fun getCategoryList(): LiveData<List<Category>> {
-        return Transformations.map(categoryDao.getCategoryList()) {
+    override fun getCategoryList(searchQuery: String): LiveData<List<Category>> {
+        return Transformations.map(categoryDao.getCategoryList(searchQuery = searchQuery)) {
             it.map { model ->
                 mapper.mapModelToEntity(model = model)
             }

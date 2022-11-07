@@ -8,5 +8,6 @@ class GetProductListUseCase(
     private val repository: ProductRepository
 ) {
 
-    operator fun invoke(): LiveData<List<Product>> = repository.getProductList()
+    operator fun invoke(searchQuery: String): LiveData<List<Product>> =
+        repository.getProductList(searchQuery = searchQuery)
 }

@@ -12,6 +12,7 @@ import com.iruda.ecomm.R
 import com.iruda.ecomm.databinding.FragmentHomeBinding
 import com.iruda.ecomm.presentation.home.adapters.ProductAdapter
 import com.iruda.ecomm.presentation.home.viewmodels.HomeViewModel
+import com.iruda.ecomm.util.onQueryTextChanged
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 
 class HomeFragment : Fragment(), MenuProvider {
@@ -40,6 +41,7 @@ class HomeFragment : Fragment(), MenuProvider {
 
         createCarousel()
         observeViewModel()
+
     }
 
     private fun observeViewModel() {
@@ -86,13 +88,21 @@ class HomeFragment : Fragment(), MenuProvider {
 
         val searchItem = menu.findItem(R.id.search_action_appbar)
         searchView = searchItem.actionView as SearchView
+
+        val pendingQuery = viewModel.searchQuery.value
+        if (pendingQuery != null && pendingQuery.isNotEmpty()) {
+            searchItem.expandActionView()
+            searchView.setQuery(pendingQuery, false)
+        }
+
+        searchView.onQueryTextChanged {
+            viewModel.postSearch(query = it)
+        }
+
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         return when (menuItem.itemId) {
-            R.id.search_action_appbar -> {
-                true
-            }
             R.id.notification_action_appbar -> {
                 true
             }

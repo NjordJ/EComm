@@ -14,6 +14,7 @@ import com.iruda.ecomm.databinding.FragmentCategoryBinding
 import com.iruda.ecomm.domain.category.entities.Category
 import com.iruda.ecomm.presentation.category.adapters.CategoryAdapter
 import com.iruda.ecomm.presentation.category.viewmodels.CategoryViewModel
+import com.iruda.ecomm.util.onQueryTextChanged
 
 class CategoryFragment : Fragment(), MenuProvider {
 
@@ -75,6 +76,16 @@ class CategoryFragment : Fragment(), MenuProvider {
 
         val searchItem = menu.findItem(R.id.search_action_appbar)
         searchView = searchItem.actionView as SearchView
+
+        val pendingQuery = viewModel.searchQuery.value
+        if (pendingQuery != null && pendingQuery.isNotEmpty()) {
+            searchItem.expandActionView()
+            searchView.setQuery(pendingQuery, false)
+        }
+
+        searchView.onQueryTextChanged {
+            viewModel.postSearch(query = it)
+        }
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {

@@ -1,7 +1,6 @@
 package com.iruda.ecomm.presentation.category.screens
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
@@ -9,13 +8,12 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.iruda.ecomm.R
 import com.iruda.ecomm.databinding.FragmentProductsInCategoryBinding
 import com.iruda.ecomm.presentation.category.viewmodels.ProductsInCategoryViewModel
 import com.iruda.ecomm.presentation.home.adapters.ProductAdapter
-import kotlinx.coroutines.launch
+import com.iruda.ecomm.util.onQueryTextChanged
 
 class ProductsInCategoryFragment : Fragment(), MenuProvider {
 
@@ -55,12 +53,10 @@ class ProductsInCategoryFragment : Fragment(), MenuProvider {
         viewModel = ViewModelProvider(this)[ProductsInCategoryViewModel::class.java]
 
         //TODO: List in log showing more than one time somehow
-        lifecycleScope.launch {
-            viewModel.getProductsInCategory(args.categoryName).observe(viewLifecycleOwner) {
-                adapter.submitList(it)
-            }
-        }
 
+        viewModel.getProductsInCategory(args.categoryName).observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
     }
 
     override fun onDestroy() {
@@ -73,6 +69,16 @@ class ProductsInCategoryFragment : Fragment(), MenuProvider {
 
         val searchItem = menu.findItem(R.id.search_action_appbar)
         searchView = searchItem.actionView as SearchView
+
+        val pendingQuery = viewModel.searchQuery.value
+        if (pendingQuery != null && pendingQuery.isNotEmpty()) {
+            searchItem.expandActionView()
+            searchView.setQuery(pendingQuery, false)
+        }
+
+        searchView.onQueryTextChanged {
+            viewModel.postSearch(query = it)
+        }
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
