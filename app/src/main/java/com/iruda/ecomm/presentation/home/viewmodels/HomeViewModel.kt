@@ -1,13 +1,11 @@
 package com.iruda.ecomm.presentation.home.viewmodels
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.switchMap
 import com.iruda.ecomm.data.product.repositories.ProductRepositoryImpl
-import com.iruda.ecomm.domain.product.entities.Product
 import com.iruda.ecomm.domain.product.usecases.GetProductListUseCase
 import com.iruda.ecomm.domain.product.usecases.GetProductUseCase
 import com.iruda.ecomm.domain.product.usecases.LoadProductDataUseCase
