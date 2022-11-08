@@ -50,7 +50,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linear_layout_account_user_information">
 
-        <androidx.cardview.widget.CardView
+        <!--<androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp">
@@ -61,7 +61,7 @@
                 android:layout_margin="8dp"
                 android:text="@string/account_favourite"
                 app:drawableStartCompat="@drawable/ic_favorite" />
-        </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>-->
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -74,7 +74,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="16dp"
                 android:text="@string/account_about"
                 app:drawableStartCompat="@drawable/ic_info" />
         </androidx.cardview.widget.CardView>
@@ -90,7 +90,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="16dp"
                 android:text="@string/account_settings"
                 app:drawableStartCompat="@drawable/ic_settings" />
         </androidx.cardview.widget.CardView>
