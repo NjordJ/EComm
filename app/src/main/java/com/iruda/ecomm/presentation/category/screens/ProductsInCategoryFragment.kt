@@ -8,9 +8,11 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.iruda.ecomm.R
 import com.iruda.ecomm.databinding.FragmentProductsInCategoryBinding
+import com.iruda.ecomm.domain.product.entities.Product
 import com.iruda.ecomm.presentation.category.viewmodels.ProductsInCategoryViewModel
 import com.iruda.ecomm.presentation.home.adapters.ProductAdapter
 import com.iruda.ecomm.util.onQueryTextChanged
@@ -50,6 +52,12 @@ class ProductsInCategoryFragment : Fragment(), MenuProvider {
         binding.recyclerViewProductsInCategory.adapter = adapter
         binding.recyclerViewProductsInCategory.itemAnimator = null
 
+        adapter.onProductClickListener = object : ProductAdapter.OnProductClickListener {
+            override fun onProductClick(product: Product) {
+                launchDetailScreen(product = product)
+            }
+        }
+
         viewModel = ViewModelProvider(this)[ProductsInCategoryViewModel::class.java]
 
         //TODO: List in log showing more than one time somehow
@@ -57,6 +65,14 @@ class ProductsInCategoryFragment : Fragment(), MenuProvider {
         viewModel.getProductsInCategory(args.categoryName).observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
+    }
+
+    private fun launchDetailScreen(product: Product) {
+        val action =
+            ProductsInCategoryFragmentDirections.actionProductsInCategoryFragmentToProductDetailInfoFragment(
+                product
+            )
+        findNavController().navigate(action)
     }
 
     override fun onDestroy() {

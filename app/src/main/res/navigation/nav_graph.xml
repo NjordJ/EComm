@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.iruda.ecomm.presentation.home.screens.HomeFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_productDetailInfoFragment"
+            app:destination="@id/productDetailInfoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/categoryFragment"
         android:name="com.iruda.ecomm.presentation.category.screens.CategoryFragment"
@@ -37,5 +41,17 @@
         <argument
             android:name="categoryName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_productsInCategoryFragment_to_productDetailInfoFragment"
+            app:destination="@id/productDetailInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailInfoFragment"
+        android:name="com.iruda.ecomm.presentation.product_detail_info.screens.ProductDetailInfoFragment"
+        android:label="Product"
+        tools:layout="@layout/product_detail_info">
+        <argument
+            android:name="product"
+            app:argType="com.iruda.ecomm.domain.product.entities.Product" />
     </fragment>
 </navigation>

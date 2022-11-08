@@ -49,11 +49,7 @@ class CategoryFragment : Fragment(), MenuProvider {
         adapter.onCategoryClickListener = object : CategoryAdapter.OnCategoryClickListener {
 
             override fun onCategoryClick(category: Category) {
-                val action =
-                    CategoryFragmentDirections.actionCategoryFragmentToProductsInCategoryFragment(
-                        category.name
-                    )
-                findNavController().navigate(action)
+                launchDetailScreen(categoryName = category.name)
             }
         }
 
@@ -64,6 +60,14 @@ class CategoryFragment : Fragment(), MenuProvider {
         viewModel.categoryList.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
+    }
+
+    private fun launchDetailScreen(categoryName: String) {
+        val action =
+            CategoryFragmentDirections.actionCategoryFragmentToProductsInCategoryFragment(
+                categoryName
+            )
+        findNavController().navigate(action)
     }
 
     override fun onDestroy() {
