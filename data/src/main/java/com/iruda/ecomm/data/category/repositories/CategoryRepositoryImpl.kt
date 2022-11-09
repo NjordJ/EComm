@@ -13,10 +13,9 @@ import com.iruda.ecomm.domain.category.repositories.CategoryRepository
 
 class CategoryRepositoryImpl(
     private val application: Application,
-    private val categoryDao: CategoryDao
+    private val categoryDao: CategoryDao,
+    private val mapper: CategoryMapper
 ) : CategoryRepository {
-
-    private val mapper = CategoryMapper()
 
     override fun getCategoryList(searchQuery: String): LiveData<List<Category>> {
         return Transformations.map(categoryDao.getCategoryList(searchQuery = searchQuery)) {

@@ -5,22 +5,17 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.switchMap
-import com.iruda.ecomm.data.product.database.ProductDao
 import com.iruda.ecomm.data.product.repositories.ProductRepositoryImpl
 import com.iruda.ecomm.domain.product.usecases.GetProductListUseCase
-import com.iruda.ecomm.domain.product.usecases.GetProductUseCase
 import com.iruda.ecomm.domain.product.usecases.LoadProductDataUseCase
 
-class HomeViewModel(application: Application, productDao: ProductDao) :
+class HomeViewModel(application: Application, repository: ProductRepositoryImpl) :
     AndroidViewModel(application) {
-
-    private val repository = ProductRepositoryImpl(application, productDao)
 
     private val _searchQuery = MutableLiveData<String>()
     val searchQuery: LiveData<String>
         get() = _searchQuery
 
-    private val getProductUseCase = GetProductUseCase(repository)
     private val getProductListUseCase = GetProductListUseCase(repository)
     private val loadProductDataUseCase = LoadProductDataUseCase(repository)
 
@@ -40,8 +35,6 @@ class HomeViewModel(application: Application, productDao: ProductDao) :
     fun postSearch(query: String) {
         _searchQuery.value = query
     }
-
-    fun getDetailProductInfo(id: Int) = getProductUseCase(id = id)
 
     companion object {
 

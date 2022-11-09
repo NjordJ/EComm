@@ -5,15 +5,12 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.switchMap
-import com.iruda.ecomm.data.category.database.CategoryDao
 import com.iruda.ecomm.data.category.repositories.CategoryRepositoryImpl
 import com.iruda.ecomm.domain.category.usecases.GetCategoryListUseCase
 import com.iruda.ecomm.domain.category.usecases.LoadCategoryDataUseCase
 
-class CategoryViewModel(application: Application, categoryDao: CategoryDao) :
+class CategoryViewModel(application: Application, repository: CategoryRepositoryImpl) :
     AndroidViewModel(application) {
-
-    private val repository = CategoryRepositoryImpl(application, categoryDao)
 
     private val _searchQuery = MutableLiveData<String>()
     val searchQuery: LiveData<String>

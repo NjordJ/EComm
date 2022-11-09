@@ -5,14 +5,12 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.switchMap
-import com.iruda.ecomm.data.product.database.ProductDao
 import com.iruda.ecomm.data.product.repositories.ProductRepositoryImpl
 import com.iruda.ecomm.domain.product.entities.Product
 import com.iruda.ecomm.domain.product.usecases.GetProductListInCategoryUseCase
 
-class ProductsInCategoryViewModel(application: Application, productDao: ProductDao) : AndroidViewModel(application) {
-
-    private val repository = ProductRepositoryImpl(application, productDao)
+class ProductsInCategoryViewModel(application: Application, repository: ProductRepositoryImpl) :
+    AndroidViewModel(application) {
 
     private val _searchQuery = MutableLiveData<String>()
     val searchQuery: LiveData<String>

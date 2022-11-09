@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.work.ExistingWorkPolicy
 import androidx.work.WorkManager
-import com.iruda.ecomm.data.global.AppDatabase
 import com.iruda.ecomm.data.product.database.ProductDao
 import com.iruda.ecomm.data.product.mappers.ProductMapper
 import com.iruda.ecomm.data.product.workers.RefreshProductsWorker
@@ -14,10 +13,9 @@ import com.iruda.ecomm.domain.product.repositories.ProductRepository
 
 class ProductRepositoryImpl(
     private val application: Application,
-    private val productDao: ProductDao
+    private val productDao: ProductDao,
+    private val mapper: ProductMapper
 ) : ProductRepository {
-
-    private val mapper = ProductMapper()
 
     override fun getProductList(searchQuery: String): LiveData<List<Product>> {
         return Transformations.map(
