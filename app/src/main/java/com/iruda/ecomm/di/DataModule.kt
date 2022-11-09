@@ -12,6 +12,8 @@ import com.iruda.ecomm.data.product.mappers.ProductMapper
 import com.iruda.ecomm.data.product.network.ProductApiFactory
 import com.iruda.ecomm.data.product.repositories.ProductRepositoryImpl
 import com.iruda.ecomm.data.product.workers.RefreshProductsWorker
+import com.iruda.ecomm.domain.category.repositories.CategoryRepository
+import com.iruda.ecomm.domain.product.repositories.ProductRepository
 import org.koin.androidx.workmanager.dsl.worker
 import org.koin.dsl.module
 
@@ -44,7 +46,7 @@ val dataModule = module {
     }
 
     // Repository
-    single<ProductRepositoryImpl> {
+    single<ProductRepository> {
         ProductRepositoryImpl(
             application = get(),
             productDao = get(),
@@ -52,7 +54,7 @@ val dataModule = module {
         )
     }
 
-    single<CategoryRepositoryImpl> {
+    single<CategoryRepository> {
         CategoryRepositoryImpl(
             application = get(),
             categoryDao = get(),

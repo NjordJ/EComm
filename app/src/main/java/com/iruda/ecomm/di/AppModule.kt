@@ -11,21 +11,23 @@ val appModule = module {
     viewModel<HomeViewModel> {
         HomeViewModel(
             application = get(),
-            repository = get()
+            getProductListUseCase = get(),
+            loadProductDataUseCase = get()
         )
     }
 
     viewModel<CategoryViewModel> {
         CategoryViewModel(
             application = get(),
-            repository = get()
+            getCategoryListUseCase = get(),
+            loadCategoryDataUseCase = get()
         )
     }
 
     viewModel<ProductsInCategoryViewModel> {
         ProductsInCategoryViewModel(
             application = get(),
-            repository = get()
+            getProductListInCategoryUseCase = get()
         )
     }
 }
