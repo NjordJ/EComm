@@ -5,22 +5,21 @@ import androidx.work.CoroutineWorker
 import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkerParameters
-import com.iruda.ecomm.data.global.AppDatabase
+import com.iruda.ecomm.data.product.database.ProductDao
 import com.iruda.ecomm.data.product.network.ProductApiFactory
 import kotlinx.coroutines.delay
 
 class RefreshProductsWorker(
     context: Context,
-    workerParameters: WorkerParameters
+    workerParameters: WorkerParameters,
+    private val productDao: ProductDao,
+    private val factory: ProductApiFactory
 ) : CoroutineWorker(context, workerParameters) {
-
-    private val productDao = AppDatabase.getInstance(context).productDao()
-    private val apiService = ProductApiFactory.apiService
 
     override suspend fun doWork(): Result {
         while (true) {
             try {
-                val products = apiService.getAllProducts()
+                val products = factory.apiService.getAllProducts()
                 productDao.insertProductList(products)
             } catch (e: Exception) {
             }

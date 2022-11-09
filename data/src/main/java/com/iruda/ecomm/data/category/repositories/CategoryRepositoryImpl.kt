@@ -5,20 +5,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.work.ExistingWorkPolicy
 import androidx.work.WorkManager
+import com.iruda.ecomm.data.category.database.CategoryDao
 import com.iruda.ecomm.data.category.mappers.CategoryMapper
-import com.iruda.ecomm.data.category.network.CategoryApiFactory
 import com.iruda.ecomm.data.category.workers.RefreshCategoriesWorker
-import com.iruda.ecomm.data.global.AppDatabase
 import com.iruda.ecomm.domain.category.entities.Category
 import com.iruda.ecomm.domain.category.repositories.CategoryRepository
 
 class CategoryRepositoryImpl(
-    private val application: Application
+    private val application: Application,
+    private val categoryDao: CategoryDao,
+    private val mapper: CategoryMapper
 ) : CategoryRepository {
-
-    private val categoryDao = AppDatabase.getInstance(application).categoryDao()
-    private val apiService = CategoryApiFactory.apiService
-    private val mapper = CategoryMapper()
 
     override fun getCategoryList(searchQuery: String): LiveData<List<Category>> {
         return Transformations.map(categoryDao.getCategoryList(searchQuery = searchQuery)) {

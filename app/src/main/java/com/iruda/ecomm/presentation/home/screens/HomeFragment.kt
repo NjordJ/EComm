@@ -7,20 +7,19 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.iruda.ecomm.R
-import com.iruda.ecomm.data.product.models.ProductModel
 import com.iruda.ecomm.databinding.FragmentHomeBinding
 import com.iruda.ecomm.domain.product.entities.Product
 import com.iruda.ecomm.presentation.home.adapters.ProductAdapter
 import com.iruda.ecomm.presentation.home.viewmodels.HomeViewModel
 import com.iruda.ecomm.util.onQueryTextChanged
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(), MenuProvider {
 
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel by viewModel<HomeViewModel>()
 
     private var _binding: FragmentHomeBinding? = null
     private val binding: FragmentHomeBinding
@@ -59,7 +58,6 @@ class HomeFragment : Fragment(), MenuProvider {
             }
         }
 
-        viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         viewModel.productList.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }

@@ -5,26 +5,25 @@ import androidx.work.CoroutineWorker
 import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkerParameters
+import com.iruda.ecomm.data.category.database.CategoryDao
 import com.iruda.ecomm.data.category.mappers.CategoryMapper
 import com.iruda.ecomm.data.category.models.CategoryModel
 import com.iruda.ecomm.data.category.network.CategoryApiFactory
-import com.iruda.ecomm.data.global.AppDatabase
 import kotlinx.coroutines.delay
 
 class RefreshCategoriesWorker(
     context: Context,
-    workerParameters: WorkerParameters
+    workerParameters: WorkerParameters,
+    private val categoryDao: CategoryDao,
+    private val mapper: CategoryMapper,
+    private val factory: CategoryApiFactory
 ) : CoroutineWorker(context, workerParameters) {
-
-    private val categoryDao = AppDatabase.getInstance(context).categoryDao()
-    private val apiService = CategoryApiFactory.apiService
-    private val mapper = CategoryMapper()
 
     override suspend fun doWork(): Result {
 
         while (true) {
             try {
-                val rawCategories = apiService.getAllCategories()
+                val rawCategories = factory.apiService.getAllCategories()
                 val categories: MutableList<CategoryModel> = mutableListOf()
                 for (category in rawCategories) {
                     categories.add(

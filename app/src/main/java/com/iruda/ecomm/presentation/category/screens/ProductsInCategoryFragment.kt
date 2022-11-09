@@ -7,7 +7,6 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.iruda.ecomm.R
@@ -16,10 +15,11 @@ import com.iruda.ecomm.domain.product.entities.Product
 import com.iruda.ecomm.presentation.category.viewmodels.ProductsInCategoryViewModel
 import com.iruda.ecomm.presentation.home.adapters.ProductAdapter
 import com.iruda.ecomm.util.onQueryTextChanged
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProductsInCategoryFragment : Fragment(), MenuProvider {
 
-    private lateinit var viewModel: ProductsInCategoryViewModel
+    private val viewModel by viewModel<ProductsInCategoryViewModel>()
 
     private val args: ProductsInCategoryFragmentArgs by navArgs()
 
@@ -57,8 +57,6 @@ class ProductsInCategoryFragment : Fragment(), MenuProvider {
                 launchDetailScreen(product = product)
             }
         }
-
-        viewModel = ViewModelProvider(this)[ProductsInCategoryViewModel::class.java]
 
         //TODO: List in log showing more than one time somehow
 
