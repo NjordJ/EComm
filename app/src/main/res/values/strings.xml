@@ -26,6 +26,8 @@
     <string name="product_info_button_decrease">Button decrease amount of product</string>
     <string name="product_info_button_increase">Button increase amount of product</string>
     <string name="product_info_add_to_cart">Add to cart</string>
+    <string name="account_login">Login</string>
+    <string name="account_logout_button">Logout button</string>
 
 
 </resources>
