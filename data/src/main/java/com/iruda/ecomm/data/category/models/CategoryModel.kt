@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "category_table")
-class CategoryModel (
+data class CategoryModel (
 
     @PrimaryKey
     val name: String

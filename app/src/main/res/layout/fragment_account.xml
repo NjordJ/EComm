@@ -33,12 +33,31 @@
             android:textSize="18sp"
             tools:text="User name" />
 
-        <TextView
-            android:id="@+id/text_view_user_email"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="230dp"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            tools:text="User email" />
+            android:orientation="horizontal"
+            android:layout_gravity="end">
+
+            <TextView
+                android:id="@+id/text_view_user_email"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                tools:text="User email"
+                android:layout_weight="1"/>
+
+            <ImageButton
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="?android:selectableItemBackground"
+                android:src="@drawable/ic_exit"
+                android:scaleType="centerCrop"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/account_logout_button"
+                android:visibility="invisible"/>
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -49,6 +68,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linear_layout_account_user_information">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/account_login"
+                app:drawableStartCompat="@drawable/ic_login" />
+        </androidx.cardview.widget.CardView>
 
         <!--<androidx.cardview.widget.CardView
             android:layout_width="match_parent"
