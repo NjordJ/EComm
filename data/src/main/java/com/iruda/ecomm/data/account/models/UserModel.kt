@@ -22,7 +22,7 @@ data class NameModel(
     val lastName: String
 )
 
-@Entity(tableName = "user_address_table")
+@Entity(tableName = "user_address_table", primaryKeys = ["city", "street", "number", "zipcode"])
 data class AddressModel(
     val city: String,
     val street: String,
@@ -31,7 +31,7 @@ data class AddressModel(
     @Embedded val geolocation: GeoLocationModel
 )
 
-@Entity(tableName = "user_geolocation_table")
+@Entity(tableName = "user_geolocation_table", primaryKeys = ["lat", "long"])
 data class GeoLocationModel(
     val lat: String,
     val long: String
