@@ -12,6 +12,6 @@ open class ApiFactory {
 
     companion object {
 
-        private const val BASE_URL = "https://fakestoreapi.com/"
+        private const val BASE_URL = "https://dummyjson.com/"
     }
 }

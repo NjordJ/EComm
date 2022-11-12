@@ -41,11 +41,11 @@ class ProductDetailInfoFragment : Fragment(), MenuProvider {
     private fun observeViewModel() {
         binding.apply {
             args.product.apply {
-                loadProductImage(imageView = imageViewProductImage, imageUrl = image)
+                loadProductImage(imageView = imageViewProductImage, imageUrl = images[0])
                 textViewProductName.text = title
                 textViewProductPrice.text = price.toString()
-                ratingBarProductRating.rating = rating.rate.toFloat()
-                textViewProductRatingValue.text = rating.rate.toString()
+                ratingBarProductRating.rating = rating.toFloat()
+                textViewProductRatingValue.text = rating.toString()
                 textViewDescription.text = description
 
             }

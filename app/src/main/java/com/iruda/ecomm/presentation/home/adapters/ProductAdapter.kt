@@ -32,9 +32,9 @@ class ProductAdapter(
                 textViewProductName.text = title
                 textViewProductCategory.text = category
                 textViewProductPrice.text = price.toString()
-                textViewProductRatingValue.text = rating.rate.toString()
+                textViewProductRatingValue.text = rating.toString()
                 Glide.with(holder.itemView)
-                    .load(image)
+                    .load(images[0])
                     .centerCrop()
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .error(R.drawable.ic_error)

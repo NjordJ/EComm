@@ -16,4 +16,11 @@ data class Product(
     val category: String,
     val thumbnail: String,
     val images: List<String>
-) : Parcelable
+) : Parcelable {
+
+    @Parcelize
+    data class ProductImages(
+        val id: Int,
+        val url: String
+    ) : Parcelable
+}
