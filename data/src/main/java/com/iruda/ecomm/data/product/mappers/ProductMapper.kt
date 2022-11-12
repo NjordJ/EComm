@@ -1,7 +1,7 @@
 package com.iruda.ecomm.data.product.mappers
 
+import com.iruda.ecomm.data.product.models.ProductImagesModel
 import com.iruda.ecomm.data.product.models.ProductModel
-import com.iruda.ecomm.data.product.models.RatingModel
 import com.iruda.ecomm.domain.product.entities.Product
 
 class ProductMapper {
@@ -9,15 +9,19 @@ class ProductMapper {
     fun mapModelToEntity(model: ProductModel) = Product(
         id = model.id,
         title = model.title,
-        price = model.price,
         description = model.description,
+        price = model.price,
+        discountPercentage = model.discountPercentage,
+        rating = model.rating,
+        stock = model.stock,
+        brand = model.brand,
         category = model.category,
-        image = model.image,
-        rating = mapModelRatingToEntityRating(model.rating)
+        thumbnail = model.thumbnail,
+        images = model.images
     )
 
-    private fun mapModelRatingToEntityRating(model: RatingModel) = Product.Rating(
-        rate = model.rate,
-        count = model.count
-    )
+    private fun mapModelProductImagesToEntity(model: ProductImagesModel): List<Product.ProductImages> {
+        val list = mutableListOf<Product.ProductImages>()
+        return list
+    }
 }

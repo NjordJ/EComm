@@ -1,18 +1,23 @@
 package com.iruda.ecomm.domain.cart.entities
 
-import com.iruda.ecomm.domain.account.entities.User
-import com.iruda.ecomm.domain.product.entities.Product
-
 data class Cart(
     val id: Int,
-    val userId: User,
-    val date: String,
-    val products: CartProduct
+    val products: CartProduct,
+    val total: Int,
+    val discountedTotal: Int,
+    val userId: Int,
+    val totalProducts: Int,
+    val totalQuantity: Int
 ) {
 
     data class CartProduct(
-        val productId: Product,
-        val quantity: Int
+        val productId: Int,
+        val title: String,
+        val price: Double,
+        val quantity: Int,
+        val total: Int,
+        val discountPercentage: Double,
+        val discountedPrice: Double
     )
 }
 
