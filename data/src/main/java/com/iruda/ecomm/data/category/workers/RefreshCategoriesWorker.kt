@@ -35,13 +35,14 @@ class RefreshCategoriesWorker(
                 categoryDao.insertCategoryList(categories)
             } catch (e: Exception) {
             }
-            delay(10000)
+            delay(DELAY)
         }
     }
 
     companion object {
 
         const val NAME = "RefreshCategoryWorker"
+        private const val DELAY = 10000L
 
         fun makeRequest(): OneTimeWorkRequest {
             return OneTimeWorkRequestBuilder<RefreshCategoriesWorker>().build()

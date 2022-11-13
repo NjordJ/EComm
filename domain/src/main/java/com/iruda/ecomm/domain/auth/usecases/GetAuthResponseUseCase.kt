@@ -2,11 +2,9 @@ package com.iruda.ecomm.domain.auth.usecases
 
 import com.iruda.ecomm.domain.auth.repositories.AuthRepository
 
-class AuthorizeWithEmailUseCase(
+class GetAuthResponseUseCase(
     private val repository: AuthRepository
 ) {
 
-    suspend operator fun invoke() = repository.authorizeWithEmail(
-
-    )
+    operator fun invoke(id: Int) = repository.getAuthResponse(id = id)
 }

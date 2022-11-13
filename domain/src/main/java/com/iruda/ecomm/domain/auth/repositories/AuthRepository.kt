@@ -5,5 +5,7 @@ import com.iruda.ecomm.domain.auth.entities.AuthResponse
 
 interface AuthRepository {
 
-    fun authorizeWithEmail(email: String, password: String): LiveData<AuthResponse>
+    suspend fun authorizeWithEmail()
+
+    fun getAuthResponse(id: Int): LiveData<AuthResponse>
 }

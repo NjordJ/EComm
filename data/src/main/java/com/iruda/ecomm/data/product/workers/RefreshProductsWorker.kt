@@ -20,21 +20,18 @@ class RefreshProductsWorker(
         while (true) {
             try {
                 val productRaw = factory.apiService.getAllProducts()
-//                val products = mutableListOf<ProductsModel>()
-//                for (product in productRaw.products) {
-//                    products.add(product)
-//                }
                 val products = productRaw.products
                 productDao.insertProductList(products)
             } catch (e: Exception) {
             }
-            delay(10000)
+            delay(DELAY)
         }
     }
 
     companion object {
 
         const val NAME = "RefreshProductWorker"
+        private const val DELAY = 10000L
 
         fun makeRequest(): OneTimeWorkRequest {
             return OneTimeWorkRequestBuilder<RefreshProductsWorker>().build()
