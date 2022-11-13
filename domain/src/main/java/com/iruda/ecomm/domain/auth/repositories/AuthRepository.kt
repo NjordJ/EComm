@@ -7,5 +7,5 @@ interface AuthRepository {
 
     suspend fun authorizeWithEmail()
 
-    fun getAuthResponse(id: Int): LiveData<AuthResponse>
+    fun getAuthResponse(): LiveData<AuthResponse>
 }

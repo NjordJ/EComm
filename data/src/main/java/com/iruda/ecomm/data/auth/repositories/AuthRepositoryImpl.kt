@@ -22,8 +22,8 @@ class AuthRepositoryImpl(
     private val mapper: AuthMapper
 ) : AuthRepository {
 
-    override fun getAuthResponse(id: Int): LiveData<AuthResponse> {
-        return Transformations.map(authDao.getUserInfo(id = id)) {
+    override fun getAuthResponse(): LiveData<AuthResponse> {
+        return Transformations.map(authDao.getUserInfo()) {
             mapper.mapModelToEntity(it)
         }
     }
@@ -40,6 +40,12 @@ class AuthRepositoryImpl(
                 response: Response<AuthResponseModel>
             ) {
                 val authResponse = response.body()
+                Log.d("AuthError", response.message())
+                Log.d("AuthError", response.headers().toString())
+                Log.d("AuthError", response.body().toString())
+                Log.d("AuthError", response.code().toString())
+                Log.d("AuthError", response.errorBody().toString())
+                Log.d("AuthError", response.raw().toString())
 
                 if (response.isSuccessful && authResponse != null) {
                     CoroutineScope(Dispatchers.IO).launch {

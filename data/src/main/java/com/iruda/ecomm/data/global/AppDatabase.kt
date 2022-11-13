@@ -15,7 +15,7 @@ import com.iruda.ecomm.data.product.models.ProductModel
 @Database(
     entities = [ProductModel::class, ProductImagesModel::class, CategoryModel::class,
         AuthResponseModel::class],
-    version = 8,
+    version = 9,
     exportSchema = false
 )
 @TypeConverters(ImagesConverter::class)

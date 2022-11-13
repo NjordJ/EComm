@@ -6,5 +6,5 @@ class GetAuthResponseUseCase(
     private val repository: AuthRepository
 ) {
 
-    operator fun invoke(id: Int) = repository.getAuthResponse(id = id)
+    operator fun invoke() = repository.getAuthResponse()
 }

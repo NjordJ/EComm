@@ -1,5 +1,6 @@
 package com.iruda.ecomm.di
 
+import com.iruda.ecomm.presentation.account.viewmodels.AccountViewModel
 import com.iruda.ecomm.presentation.category.viewmodels.CategoryViewModel
 import com.iruda.ecomm.presentation.category.viewmodels.ProductsInCategoryViewModel
 import com.iruda.ecomm.presentation.home.viewmodels.HomeViewModel
@@ -28,6 +29,14 @@ val appModule = module {
         ProductsInCategoryViewModel(
             application = get(),
             getProductListInCategoryUseCase = get()
+        )
+    }
+
+    viewModel<AccountViewModel> {
+        AccountViewModel(
+            application = get(),
+            authorizeWithEmailUseCase = get(),
+            getAuthResponseUseCase = get()
         )
     }
 }
