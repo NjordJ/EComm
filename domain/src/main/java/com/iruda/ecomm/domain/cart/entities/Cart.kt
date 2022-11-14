@@ -2,7 +2,7 @@ package com.iruda.ecomm.domain.cart.entities
 
 data class Cart(
     val id: Int,
-    val products: CartProduct,
+    val products: List<CartProduct>,
     val total: Int,
     val discountedTotal: Int,
     val userId: Int,
@@ -11,7 +11,7 @@ data class Cart(
 ) {
 
     data class CartProduct(
-        val productId: Int,
+        val id: Int,
         val title: String,
         val price: Double,
         val quantity: Int,

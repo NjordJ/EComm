@@ -5,7 +5,7 @@ import com.iruda.ecomm.domain.cart.entities.Cart
 
 interface CartRepository {
 
-    fun getCartList(): LiveData<List<Cart>>
+    fun getCartList(userId: Int): LiveData<List<Cart>>
 
     fun getCart(id: Int): LiveData<Cart>
 }
