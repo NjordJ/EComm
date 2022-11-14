@@ -8,16 +8,15 @@ data class Cart(
     val userId: Int,
     val totalProducts: Int,
     val totalQuantity: Int
-) {
+)
 
-    data class CartProduct(
-        val id: Int,
-        val title: String,
-        val price: Double,
-        val quantity: Int,
-        val total: Int,
-        val discountPercentage: Double,
-        val discountedPrice: Double
-    )
-}
+data class CartProduct(
+    val id: Int,
+    val title: String,
+    val price: Double,
+    val quantity: Int,
+    val total: Int,
+    val discountPercentage: Double,
+    val discountedPrice: Double
+)
 
