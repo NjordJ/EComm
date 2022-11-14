@@ -13,6 +13,7 @@ import com.iruda.ecomm.domain.auth.repositories.AuthRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
 
@@ -31,8 +32,8 @@ class AuthRepositoryImpl(
     override suspend fun authorizeWithEmail() {
         factory.apiService.loginWithEmail(
             AuthRequestModel(
-                userName = "atuny0",
-                password = "9uQFF1Lh"
+                userName = "kminchelle",
+                password = "0lelplR"
             )
         ).enqueue(object : retrofit2.Callback<AuthResponseModel> {
             override fun onResponse(
@@ -40,12 +41,10 @@ class AuthRepositoryImpl(
                 response: Response<AuthResponseModel>
             ) {
                 val authResponse = response.body()
-                Log.d("AuthError", response.message())
-                Log.d("AuthError", response.headers().toString())
-                Log.d("AuthError", response.body().toString())
-                Log.d("AuthError", response.code().toString())
-                Log.d("AuthError", response.errorBody().toString())
-                Log.d("AuthError", response.raw().toString())
+                Log.d("AuthError", "Code: " + response.code().toString())
+                Log.d("AuthError", "Message: " + response.message())
+                Log.d("AuthError", "Body: " + response.body().toString())
+                Log.d("AuthError", "Error Body: " + response.errorBody())
 
                 if (response.isSuccessful && authResponse != null) {
                     CoroutineScope(Dispatchers.IO).launch {

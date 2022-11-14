@@ -10,7 +10,7 @@ import retrofit2.http.POST
 interface AuthApiService {
 
     @Headers(
-        "Content-type: application/json; charset=utf-8"
+        "Content-type: application/json"
     )
     @POST("auth/login")
     fun loginWithEmail(@Body request: AuthRequestModel): Call<AuthResponseModel>
