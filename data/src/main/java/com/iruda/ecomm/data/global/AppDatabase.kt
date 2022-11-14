@@ -4,6 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.iruda.ecomm.data.cart.database.CartDao
+import com.iruda.ecomm.data.cart.database.converters.CartProductConverter
 import com.iruda.ecomm.data.cart.models.CartModel
 import com.iruda.ecomm.data.cart.models.CartProductModel
 import com.iruda.ecomm.data.category.database.CategoryDao

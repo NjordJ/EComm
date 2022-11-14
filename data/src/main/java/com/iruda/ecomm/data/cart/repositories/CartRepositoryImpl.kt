@@ -33,6 +33,7 @@ class CartRepositoryImpl(
 
     override suspend fun loadData(userId: Int) {
         val cart = factory.apiService.getUserCart(userId = userId.toString()).carts[FIRST_USER_CART]
+        val cartProducts = cart.products
         cartDao.insertCart(cart = cart)
     }
 

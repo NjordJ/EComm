@@ -46,6 +46,7 @@
         app:layout_constraintTop_toTopOf="@id/card_view_cart_image">
 
         <TextView
+            android:id="@+id/text_view_cart_product_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
@@ -54,6 +55,7 @@
             tools:text="Product name" />
 
         <TextView
+            android:id="@+id/text_view_cart_product_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -72,6 +74,7 @@
                 android:src="@drawable/ic_remove" />
 
             <TextView
+                android:id="@+id/text_view_cart_product_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

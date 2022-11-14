@@ -19,6 +19,7 @@ data class CartModel(
 
 @Entity(tableName = "cart_product_table")
 data class CartProductModel(
+    @PrimaryKey(autoGenerate = false)
     val id: Int,
     val title: String,
     val price: Double,
