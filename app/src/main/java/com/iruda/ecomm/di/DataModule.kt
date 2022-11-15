@@ -1,6 +1,10 @@
 package com.iruda.ecomm.di
 
 import androidx.room.Room
+import com.iruda.ecomm.data.cart.database.CartDao
+import com.iruda.ecomm.data.cart.mappers.CartMapper
+import com.iruda.ecomm.data.cart.network.CartApiFactory
+import com.iruda.ecomm.data.cart.repositories.CartRepositoryImpl
 import com.iruda.ecomm.data.category.database.CategoryDao
 import com.iruda.ecomm.data.category.mappers.CategoryMapper
 import com.iruda.ecomm.data.category.network.CategoryApiFactory
@@ -12,6 +16,7 @@ import com.iruda.ecomm.data.product.mappers.ProductMapper
 import com.iruda.ecomm.data.product.network.ProductApiFactory
 import com.iruda.ecomm.data.product.repositories.ProductRepositoryImpl
 import com.iruda.ecomm.data.product.workers.RefreshProductsWorker
+import com.iruda.ecomm.domain.cart.repositories.CartRepository
 import com.iruda.ecomm.domain.category.repositories.CategoryRepository
 import com.iruda.ecomm.domain.product.repositories.ProductRepository
 import org.koin.androidx.workmanager.dsl.worker
@@ -22,6 +27,7 @@ val dataModule = module {
     // Mappers
     single { ProductMapper() }
     single { CategoryMapper() }
+    single { CartMapper() }
 
     // Database
     single<AppDatabase> {
@@ -45,6 +51,11 @@ val dataModule = module {
         database.categoryDao()
     }
 
+    single<CartDao> {
+        val database = get<AppDatabase>()
+        database.cartDao()
+    }
+
     // Repository
     single<ProductRepository> {
         ProductRepositoryImpl(
@@ -62,6 +73,14 @@ val dataModule = module {
         )
     }
 
+    single<CartRepository> {
+        CartRepositoryImpl(
+            cartDao = get(),
+            factory = get(),
+            mapper = get()
+        )
+    }
+
     // Network
     single<ProductApiFactory> {
         ProductApiFactory
@@ -69,6 +88,10 @@ val dataModule = module {
 
     single<CategoryApiFactory> {
         CategoryApiFactory
+    }
+
+    single<CartApiFactory> {
+        CartApiFactory
     }
 
     // Workmanager
@@ -90,5 +113,4 @@ val dataModule = module {
             factory = get()
         )
     }
-
 }

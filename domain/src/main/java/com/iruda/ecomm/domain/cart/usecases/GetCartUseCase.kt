@@ -8,5 +8,5 @@ class GetCartUseCase(
     private val repository: CartRepository
 ) {
 
-    operator fun invoke(id: Int): LiveData<Cart> = repository.getCart(id = id)
+    operator fun invoke(): LiveData<Cart> = repository.getCart()
 }

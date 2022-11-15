@@ -20,10 +20,6 @@ class RefreshProductsWorker(
         while (true) {
             try {
                 val productRaw = factory.apiService.getAllProducts()
-//                val products = mutableListOf<ProductsModel>()
-//                for (product in productRaw.products) {
-//                    products.add(product)
-//                }
                 val products = productRaw.products
                 productDao.insertProductList(products)
             } catch (e: Exception) {

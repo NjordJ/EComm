@@ -31,6 +31,7 @@ ext {
     paging_version = "3.1.1"
     workmanager_version = "2.7.1"
     carousel_version = "2.1.0"
+    splashscreen_version = "1.0.0"
 }
 
 task clean(type: Delete) {

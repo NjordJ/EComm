@@ -1,5 +1,8 @@
 package com.iruda.ecomm.di
 
+import com.iruda.ecomm.domain.cart.usecases.GetCartListUseCase
+import com.iruda.ecomm.domain.cart.usecases.GetCartUseCase
+import com.iruda.ecomm.domain.cart.usecases.LoadCartDataUseCase
 import com.iruda.ecomm.domain.category.usecases.GetCategoryListUseCase
 import com.iruda.ecomm.domain.category.usecases.LoadCategoryDataUseCase
 import com.iruda.ecomm.domain.product.usecases.GetProductListInCategoryUseCase
@@ -35,6 +38,24 @@ val domainModule = module {
 
     factory<LoadCategoryDataUseCase> {
         LoadCategoryDataUseCase(
+            repository = get()
+        )
+    }
+
+    factory<GetCartUseCase> {
+        GetCartUseCase(
+            repository = get()
+        )
+    }
+
+    factory<GetCartListUseCase> {
+        GetCartListUseCase(
+            repository = get()
+        )
+    }
+
+    factory<LoadCartDataUseCase> {
+        LoadCartDataUseCase(
             repository = get()
         )
     }
