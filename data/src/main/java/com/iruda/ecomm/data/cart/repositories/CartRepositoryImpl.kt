@@ -10,8 +10,8 @@ import com.iruda.ecomm.domain.cart.entities.CartProduct
 import com.iruda.ecomm.domain.cart.repositories.CartRepository
 
 class CartRepositoryImpl(
-    private val factory: CartApiFactory,
     private val cartDao: CartDao,
+    private val factory: CartApiFactory,
     private val mapper: CartMapper
 ) : CartRepository {
 
@@ -31,14 +31,8 @@ class CartRepositoryImpl(
         }
     }
 
-    override suspend fun loadData(userId: Int) {
-        val cart = factory.apiService.getUserCart(userId = userId.toString()).carts[FIRST_USER_CART]
-        val cartProducts = cart.products
+    override suspend fun loadData() {
+        val cart = factory.apiService.getUserCart(userId = "5").carts[0]
         cartDao.insertCart(cart = cart)
-    }
-
-    companion object {
-
-        private const val FIRST_USER_CART = 0
     }
 }

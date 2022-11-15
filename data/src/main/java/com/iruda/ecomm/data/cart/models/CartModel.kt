@@ -9,7 +9,7 @@ data class CartModel(
 
     @PrimaryKey(autoGenerate = false)
     val id: Int,
-    @Embedded(prefix = "cart_product_") val products: List<CartProductModel>,
+    val products: List<CartProductModel>,
     val total: Int,
     val discountedTotal: Int,
     val userId: Int,

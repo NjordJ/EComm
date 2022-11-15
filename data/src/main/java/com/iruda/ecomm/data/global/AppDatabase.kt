@@ -20,7 +20,7 @@ import com.iruda.ecomm.data.product.models.ProductModel
     version = 8,
     exportSchema = false
 )
-@TypeConverters(ImagesConverter::class)
+@TypeConverters(ImagesConverter::class, CartProductConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
     companion object {

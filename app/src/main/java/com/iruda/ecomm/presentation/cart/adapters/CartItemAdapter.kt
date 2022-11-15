@@ -37,6 +37,7 @@ class CartItemAdapter(
                     .centerCrop()
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .error(R.drawable.ic_error)
+                    .placeholder(R.drawable.ic_launcher_background)
                     .into(imageViewCartProductImage)
                 root.setOnClickListener {
                     onCartItemClickListener?.onCartItemClick(this)

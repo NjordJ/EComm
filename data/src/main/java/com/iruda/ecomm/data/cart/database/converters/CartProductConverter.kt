@@ -4,21 +4,27 @@ import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.iruda.ecomm.data.cart.models.CartProductModel
+import java.lang.reflect.Type
 
 
 class CartProductConverter {
     private val gson = Gson()
 
     @TypeConverter
-    fun toJson(segments: List<CartProductModel?>?): String? {
-        return gson.toJson(segments)
+    fun fromCartProductList(countryLang: List<CartProductModel?>?): String? {
+        if (countryLang == null) {
+            return null
+        }
+        val type: Type = object : TypeToken<List<CartProductModel?>?>() {}.type
+        return gson.toJson(countryLang, type)
     }
 
     @TypeConverter
-    fun formJson(json: String?): List<CartProductModel?>? {
-        return gson.fromJson<List<CartProductModel?>>(
-            json,
-            object : TypeToken<List<CartProductModel?>?>() {}.type
-        )
+    fun toCartProductList(countryLangString: String?): List<CartProductModel>? {
+        if (countryLangString == null) {
+            return null
+        }
+        val type: Type = object : TypeToken<List<CartProductModel?>?>() {}.type
+        return gson.fromJson<List<CartProductModel>>(countryLangString, type)
     }
 }

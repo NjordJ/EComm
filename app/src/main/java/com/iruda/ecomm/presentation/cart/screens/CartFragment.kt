@@ -57,8 +57,12 @@ class CartFragment : Fragment(), MenuProvider {
             }
         }
 
-        viewModel.cartProductList.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
+        viewModel.cart.observe(viewLifecycleOwner) {
+            binding.apply {
+                textViewCartTotalPrice.text = it.total.toString()
+                textViewTotalQuantity.text = it.totalQuantity.toString()
+            }
+            adapter.submitList(it.products)
         }
     }
 

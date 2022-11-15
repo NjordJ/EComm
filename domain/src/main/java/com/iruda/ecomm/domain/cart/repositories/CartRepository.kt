@@ -10,5 +10,5 @@ interface CartRepository {
 
     fun getCartList(searchQuery: String): LiveData<List<CartProduct>>
 
-    suspend fun loadData(userId: Int)
+    suspend fun loadData()
 }

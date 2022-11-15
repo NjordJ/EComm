@@ -6,5 +6,5 @@ class LoadCartDataUseCase(
     private val repository: CartRepository
 ) {
 
-    suspend operator fun invoke(userId: Int) = repository.loadData(userId = userId)
+    suspend operator fun invoke() = repository.loadData()
 }

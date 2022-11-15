@@ -11,7 +11,7 @@ import com.iruda.ecomm.data.cart.models.CartProductModel
 @Dao
 interface CartDao {
 
-    @Query("SELECT * FROM cart_table")
+    @Query("SELECT * FROM cart_table LIMIT 1")
     fun getCart(): LiveData<CartModel>
 
     @Query("SELECT * FROM cart_product_table WHERE title LIKE '%' || :searchQuery || '%'")

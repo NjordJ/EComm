@@ -21,14 +21,16 @@ class CartMapper {
         val list = mutableListOf<CartProduct>()
 
         for (model in modelList) {
-            CartProduct(
-                id = model.id,
-                title = model.title,
-                price = model.price,
-                quantity = model.quantity,
-                total = model.total,
-                discountPercentage = model.discountPercentage,
-                discountedPrice = model.discountedPrice
+            list.add(
+                CartProduct(
+                    id = model.id,
+                    title = model.title,
+                    price = model.price,
+                    quantity = model.quantity,
+                    total = model.total,
+                    discountPercentage = model.discountPercentage,
+                    discountedPrice = model.discountedPrice
+                )
             )
         }
 

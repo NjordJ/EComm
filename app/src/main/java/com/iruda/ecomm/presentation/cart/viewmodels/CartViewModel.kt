@@ -1,41 +1,24 @@
 package com.iruda.ecomm.presentation.cart.viewmodels
 
 import android.app.Application
-import androidx.lifecycle.*
-import com.iruda.ecomm.domain.cart.usecases.GetCartListUseCase
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.iruda.ecomm.domain.cart.usecases.GetCartUseCase
-import com.iruda.ecomm.domain.cart.usecases.LoadCartDataUseCase
-import kotlinx.coroutines.launch
 
 class CartViewModel(
     application: Application,
-    private val getCartUseCase: GetCartUseCase,
-    private val getCartListUseCase: GetCartListUseCase,
-    private val loadCartDataUseCase: LoadCartDataUseCase,
+    private val getCartUseCase: GetCartUseCase
 ) : AndroidViewModel(application) {
 
     private val _searchQuery = MutableLiveData<String>()
     val searchQuery: LiveData<String>
         get() = _searchQuery
 
-    init {
-        loadData()
-    }
-
     val cart = getCartUseCase()
 
-    val cartProductList = _searchQuery.switchMap {
-        if (it.isNullOrEmpty()) {
-            getCartListUseCase(searchQuery = EMPTY_SEARCH)
-        } else {
-            getCartListUseCase(searchQuery = it)
-        }
-    }
-
-    private fun loadData() {
-        viewModelScope.launch {
-            loadCartDataUseCase(userId = USER_ID_TEMPLATE)
-        }
+    init {
+        _searchQuery.value = EMPTY_SEARCH
     }
 
     fun postSearch(query: String) {
