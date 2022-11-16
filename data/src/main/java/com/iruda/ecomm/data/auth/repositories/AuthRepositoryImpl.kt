@@ -13,7 +13,9 @@ import com.iruda.ecomm.domain.auth.repositories.AuthRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okhttp3.RequestBody
 import okhttp3.ResponseBody
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Response
 
@@ -32,8 +34,8 @@ class AuthRepositoryImpl(
     override suspend fun authorizeWithEmail() {
         factory.apiService.loginWithEmail(
             AuthRequestModel(
-                userName = "kminchelle",
-                password = "0lelplR"
+                userName = "atuny0",
+                password = "9uQFF1Lh"
             )
         ).enqueue(object : retrofit2.Callback<AuthResponseModel> {
             override fun onResponse(
