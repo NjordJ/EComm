@@ -28,5 +28,7 @@
     <string name="product_info_add_to_cart">Add to cart</string>
     <string name="account_login">Login</string>
     <string name="account_logout_button">Logout button</string>
+    <string name="cart_checkbox_all_products">Select all products</string>
+    <string name="cart_delete_all_products">Delete all products</string>
 
 </resources>
