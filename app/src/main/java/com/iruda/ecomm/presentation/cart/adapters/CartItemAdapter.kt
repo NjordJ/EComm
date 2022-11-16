@@ -29,8 +29,9 @@ class CartItemAdapter(
         val cartItem = getItem(position)
         with(holder.binding) {
             with(cartItem) {
+                val priceTemplate = context.resources.getString(R.string.product_price_formatted)
                 textViewCartProductName.text = title
-                textViewCartProductPrice.text = price.toString()
+                textViewCartProductPrice.text = String.format(priceTemplate, price.toString())
                 textViewCartProductAmount.text = quantity.toString()
                 Glide.with(holder.itemView)
                     .load(R.drawable.ic_launcher_background)

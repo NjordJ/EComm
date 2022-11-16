@@ -36,26 +36,26 @@
         <LinearLayout
             android:layout_width="230dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="end">
+            android:layout_gravity="end"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/text_view_user_email"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:textSize="14sp"
-                tools:text="User email"
-                android:layout_weight="1"/>
+                tools:text="User email" />
 
             <ImageButton
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:background="?android:selectableItemBackground"
-                android:src="@drawable/ic_exit"
-                android:scaleType="centerCrop"
                 android:layout_marginEnd="8dp"
+                android:background="?android:selectableItemBackground"
                 android:contentDescription="@string/account_logout_button"
-                android:visibility="invisible"/>
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_exit"
+                android:visibility="invisible" />
         </LinearLayout>
 
     </LinearLayout>
@@ -81,6 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                android:drawablePadding="8dp"
                 android:text="@string/account_login"
                 app:drawableStartCompat="@drawable/ic_login" />
         </androidx.cardview.widget.CardView>
@@ -95,7 +96,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/account_favourite"
-                app:drawableStartCompat="@drawable/ic_favorite" />
+                app:drawableStartCompat="@drawable/ic_favorite"
+                android:drawablePadding="8dp" />
         </androidx.cardview.widget.CardView>-->
 
         <androidx.cardview.widget.CardView
@@ -110,6 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                android:drawablePadding="8dp"
                 android:text="@string/account_about"
                 app:drawableStartCompat="@drawable/ic_info" />
         </androidx.cardview.widget.CardView>
@@ -126,6 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                android:drawablePadding="8dp"
                 android:text="@string/account_settings"
                 app:drawableStartCompat="@drawable/ic_settings" />
         </androidx.cardview.widget.CardView>

@@ -11,10 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:divider="@drawable/empty_wide_divider_cart"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:showDividers="middle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,7 +20,12 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select all products" />
+            android:text="@string/cart_checkbox_all_products" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -34,8 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
-                android:text="Delete all products"
-                android:textColor="@color/black" />
+                android:text="@string/cart_delete_all_products" />
 
             <ImageButton
                 android:layout_width="wrap_content"

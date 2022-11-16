@@ -59,7 +59,7 @@ class CartFragment : Fragment(), MenuProvider {
 
         viewModel.cart.observe(viewLifecycleOwner) {
             binding.apply {
-                textViewCartTotalPrice.text = it.total.toString()
+                textViewCartTotalPrice.text = getString(R.string.product_price_formatted, it.total.toString())
                 textViewTotalQuantity.text = it.totalQuantity.toString()
             }
             adapter.submitList(it.products)
