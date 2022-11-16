@@ -29,9 +29,10 @@ class ProductAdapter(
         val product = getItem(position)
         with(holder.binding) {
             with(product) {
+                val priceTemplate = context.resources.getString(R.string.product_price_formatted)
                 textViewProductName.text = title
                 textViewProductCategory.text = category
-                textViewProductPrice.text = price.toString()
+                textViewProductPrice.text = String.format(priceTemplate, price.toString())
                 textViewProductRatingValue.text = rating.toString()
                 Glide.with(holder.itemView)
                     .load(images[0])

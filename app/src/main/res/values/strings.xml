@@ -5,6 +5,8 @@
     <string name="appbar_item_search">Search</string>
     <string name="appbar_item_notification">Notification</string>
 
+    <string name="product_price_formatted">$%s</string>
+
     <!--Bottom App Bar-->
     <string name="bottom_appbar_item_home">Home</string>
     <string name="bottom_appbar_item_category">Category</string>
