@@ -5,10 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.iruda.ecomm.databinding.FragmentLoginBinding
+import com.iruda.ecomm.presentation.account.viewmodels.LoginViewModel
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
+
+    private val viewModel by viewModel<LoginViewModel>()
 
     private var _binding: FragmentLoginBinding? = null
     private val binding: FragmentLoginBinding
@@ -26,12 +32,24 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonLogin.setOnClickListener {
-
+        binding.apply {
+            textInputEditTextEmail.setText("kminchelle")
+            textInputEditTextPassword.setText("0lelplR")
+            buttonLogin.setOnClickListener {
+                authorizeUser(
+                    email = textInputEditTextEmail.text.toString(),
+                    password = textInputEditTextPassword.text.toString()
+                )
+            }
+            buttonSignIn.setOnClickListener {
+                launchRegisterFragment()
+            }
         }
+    }
 
-        binding.buttonSignIn.setOnClickListener {
-            launchRegisterFragment()
+    private fun authorizeUser(email: String, password: String) {
+        lifecycleScope.launch {
+            viewModel.authorize(email = email, password = password)
         }
     }
 

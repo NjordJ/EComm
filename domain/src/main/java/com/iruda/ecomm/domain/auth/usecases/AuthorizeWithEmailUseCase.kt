@@ -6,7 +6,8 @@ class AuthorizeWithEmailUseCase(
     private val repository: AuthRepository
 ) {
 
-    suspend operator fun invoke() = repository.authorizeWithEmail(
-
+    suspend operator fun invoke(email: String, password: String) = repository.authorizeWithEmail(
+        email = email,
+        password = password
     )
 }

@@ -28,11 +28,11 @@ class AuthRepositoryImpl(
         }
     }
 
-    override suspend fun authorizeWithEmail() {
+    override suspend fun authorizeWithEmail(email: String, password: String) {
         factory.apiService.loginWithEmail(
             AuthRequestModel(
-                userName = "atuny0",
-                password = "9uQFF1Lh"
+                userName = email,
+                password = password
             )
         ).enqueue(object : retrofit2.Callback<AuthResponseModel> {
             override fun onResponse(
