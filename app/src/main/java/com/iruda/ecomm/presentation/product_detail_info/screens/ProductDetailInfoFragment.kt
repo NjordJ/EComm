@@ -43,7 +43,7 @@ class ProductDetailInfoFragment : Fragment(), MenuProvider {
             args.product.apply {
                 loadProductImage(imageView = imageViewProductImage, imageUrl = images[0])
                 textViewProductName.text = title
-                textViewProductPrice.text = price.toString()
+                textViewProductPrice.text = getString(R.string.product_price_formatted, price.toString())
                 ratingBarProductRating.rating = rating.toFloat()
                 textViewProductRatingValue.text = rating.toString()
                 textViewDescription.text = description

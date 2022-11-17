@@ -1,7 +1,8 @@
 package com.iruda.ecomm.di
 
-import com.iruda.ecomm.domain.auth.usecases.AuthorizeWithEmailUseCase
-import com.iruda.ecomm.domain.auth.usecases.GetAuthResponseUseCase
+import com.iruda.ecomm.domain.cart.usecases.GetCartListUseCase
+import com.iruda.ecomm.domain.cart.usecases.GetCartUseCase
+import com.iruda.ecomm.domain.cart.usecases.LoadCartDataUseCase
 import com.iruda.ecomm.domain.category.usecases.GetCategoryListUseCase
 import com.iruda.ecomm.domain.category.usecases.LoadCategoryDataUseCase
 import com.iruda.ecomm.domain.product.usecases.GetProductListInCategoryUseCase
@@ -41,14 +42,20 @@ val domainModule = module {
         )
     }
 
-    factory<AuthorizeWithEmailUseCase> {
-        AuthorizeWithEmailUseCase(
+    factory<GetCartUseCase> {
+        GetCartUseCase(
             repository = get()
         )
     }
 
-    factory<GetAuthResponseUseCase> {
-        GetAuthResponseUseCase(
+    factory<GetCartListUseCase> {
+        GetCartListUseCase(
+            repository = get()
+        )
+    }
+
+    factory<LoadCartDataUseCase> {
+        LoadCartDataUseCase(
             repository = get()
         )
     }

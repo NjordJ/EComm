@@ -1,6 +1,5 @@
 package com.iruda.ecomm.data.product.mappers
 
-import com.iruda.ecomm.data.product.models.ProductImagesModel
 import com.iruda.ecomm.data.product.models.ProductModel
 import com.iruda.ecomm.domain.product.entities.Product
 
@@ -19,9 +18,4 @@ class ProductMapper {
         thumbnail = model.thumbnail,
         images = model.images
     )
-
-    private fun mapModelProductImagesToEntity(model: ProductImagesModel): List<Product.ProductImages> {
-        val list = mutableListOf<Product.ProductImages>()
-        return list
-    }
 }

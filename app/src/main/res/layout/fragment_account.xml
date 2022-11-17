@@ -82,6 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                android:drawablePadding="8dp"
                 android:text="@string/account_login"
                 app:drawableStartCompat="@drawable/ic_login" />
         </androidx.cardview.widget.CardView>
@@ -96,7 +97,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/account_favourite"
-                app:drawableStartCompat="@drawable/ic_favorite" />
+                app:drawableStartCompat="@drawable/ic_favorite"
+                android:drawablePadding="8dp" />
         </androidx.cardview.widget.CardView>-->
 
         <androidx.cardview.widget.CardView
@@ -111,6 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                android:drawablePadding="8dp"
                 android:text="@string/account_about"
                 app:drawableStartCompat="@drawable/ic_info" />
         </androidx.cardview.widget.CardView>
@@ -127,6 +130,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                android:drawablePadding="8dp"
                 android:text="@string/account_settings"
                 app:drawableStartCompat="@drawable/ic_settings" />
         </androidx.cardview.widget.CardView>
