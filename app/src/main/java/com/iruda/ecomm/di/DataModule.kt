@@ -1,6 +1,10 @@
 package com.iruda.ecomm.di
 
 import androidx.room.Room
+import com.iruda.ecomm.data.auth.database.AuthDao
+import com.iruda.ecomm.data.auth.mappers.AuthMapper
+import com.iruda.ecomm.data.auth.network.AuthApiFactory
+import com.iruda.ecomm.data.auth.repositories.AuthRepositoryImpl
 import com.iruda.ecomm.data.cart.database.CartDao
 import com.iruda.ecomm.data.cart.mappers.CartMapper
 import com.iruda.ecomm.data.cart.network.CartApiFactory
@@ -16,6 +20,7 @@ import com.iruda.ecomm.data.product.mappers.ProductMapper
 import com.iruda.ecomm.data.product.network.ProductApiFactory
 import com.iruda.ecomm.data.product.repositories.ProductRepositoryImpl
 import com.iruda.ecomm.data.product.workers.RefreshProductsWorker
+import com.iruda.ecomm.domain.auth.repositories.AuthRepository
 import com.iruda.ecomm.domain.cart.repositories.CartRepository
 import com.iruda.ecomm.domain.category.repositories.CategoryRepository
 import com.iruda.ecomm.domain.product.repositories.ProductRepository
@@ -28,6 +33,7 @@ val dataModule = module {
     single { ProductMapper() }
     single { CategoryMapper() }
     single { CartMapper() }
+    single { AuthMapper() }
 
     // Database
     single<AppDatabase> {
@@ -56,6 +62,11 @@ val dataModule = module {
         database.cartDao()
     }
 
+    single<AuthDao> {
+        val database = get<AppDatabase>()
+        database.authDao()
+    }
+
     // Repository
     single<ProductRepository> {
         ProductRepositoryImpl(
@@ -81,6 +92,14 @@ val dataModule = module {
         )
     }
 
+    single<AuthRepository> {
+        AuthRepositoryImpl(
+            authDao = get(),
+            factory = get(),
+            mapper = get()
+        )
+    }
+
     // Network
     single<ProductApiFactory> {
         ProductApiFactory
@@ -92,6 +111,10 @@ val dataModule = module {
 
     single<CartApiFactory> {
         CartApiFactory
+    }
+
+    single<AuthApiFactory> {
+        AuthApiFactory
     }
 
     // Workmanager

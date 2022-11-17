@@ -7,11 +7,6 @@ class AuthMapper {
 
     fun mapModelToEntity(model: AuthResponseModel) = AuthResponse(
         id = model.id,
-        userName = model.userName,
-        email = model.userName,
-        firstName = model.firstName,
-        lastName = model.lastName,
-        image = model.image,
         token = model.token
     )
 }
