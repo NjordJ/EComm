@@ -11,7 +11,7 @@ import com.iruda.ecomm.data.auth.models.AuthResponseModel
 interface AuthDao {
 
     @Query("SELECT * FROM auth_response_table LIMIT 1")
-    fun getUserInfo(): LiveData<AuthResponseModel>
+    fun getUserTokenAndId(): LiveData<AuthResponseModel>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUserInfo(user: AuthResponseModel)

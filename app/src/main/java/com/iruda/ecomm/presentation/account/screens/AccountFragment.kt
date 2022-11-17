@@ -6,11 +6,15 @@ import android.view.View.OnClickListener
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.iruda.ecomm.R
 import com.iruda.ecomm.databinding.FragmentAccountBinding
+import com.iruda.ecomm.domain.product.entities.Product
 import com.iruda.ecomm.presentation.account.viewmodels.AccountViewModel
+import com.iruda.ecomm.presentation.home.screens.HomeFragmentDirections
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -37,7 +41,7 @@ class AccountFragment : Fragment(), MenuProvider {
         super.onViewCreated(view, savedInstanceState)
 
         binding.cardLogin.setOnClickListener {
-            observeViewModel()
+            launchLoginFragment()
         }
 
     }
@@ -52,6 +56,13 @@ class AccountFragment : Fragment(), MenuProvider {
 //                textViewUserEmail.text = it.email
 //            }
 //        }
+    }
+
+    private fun launchLoginFragment() {
+        val action =
+            AccountFragmentDirections.actionAccountFragmentToLoginFragment()
+
+        findNavController().navigate(action)
     }
 
     override fun onDestroy() {

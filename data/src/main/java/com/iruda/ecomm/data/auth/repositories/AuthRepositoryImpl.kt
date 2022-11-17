@@ -13,9 +13,6 @@ import com.iruda.ecomm.domain.auth.repositories.AuthRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.RequestBody
-import okhttp3.ResponseBody
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Response
 
@@ -26,7 +23,7 @@ class AuthRepositoryImpl(
 ) : AuthRepository {
 
     override fun getAuthResponse(): LiveData<AuthResponse> {
-        return Transformations.map(authDao.getUserInfo()) {
+        return Transformations.map(authDao.getUserTokenAndId()) {
             mapper.mapModelToEntity(it)
         }
     }
