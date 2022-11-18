@@ -3,7 +3,6 @@ package com.iruda.ecomm.data.global
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.iruda.ecomm.data.auth.database.AuthDao
 import com.iruda.ecomm.data.auth.models.AuthResponseModel
 import com.iruda.ecomm.data.cart.database.CartDao
 import com.iruda.ecomm.data.cart.database.converters.CartProductConverter
@@ -33,5 +32,4 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun productDao(): ProductDao
     abstract fun categoryDao(): CategoryDao
     abstract fun cartDao(): CartDao
-    abstract fun authDao(): AuthDao
 }

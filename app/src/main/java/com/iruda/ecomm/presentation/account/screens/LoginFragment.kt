@@ -1,6 +1,7 @@
 package com.iruda.ecomm.presentation.account.screens
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.iruda.ecomm.databinding.FragmentLoginBinding
 import com.iruda.ecomm.presentation.account.viewmodels.LoginViewModel
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -41,8 +43,15 @@ class LoginFragment : Fragment() {
                     password = textInputEditTextPassword.text.toString()
                 )
             }
-            buttonSignIn.setOnClickListener {
-                launchRegisterFragment()
+            buttonSignUp.setOnClickListener {
+                lifecycleScope.launch {
+                    val user = viewModel.getUser()
+                    //TODO: Remove Log UserProto
+                    Log.d("UserProto", user.first().id.toString())
+                    Log.d("UserProto", user.first().token)
+                    Log.d("UserProto", user.first().isAuthorized.toString())
+                    //launchRegisterFragment()
+                }
             }
         }
     }

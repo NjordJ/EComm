@@ -1,7 +1,6 @@
 package com.iruda.ecomm.di
 
 import androidx.room.Room
-import com.iruda.ecomm.data.auth.database.AuthDao
 import com.iruda.ecomm.data.auth.mappers.AuthMapper
 import com.iruda.ecomm.data.auth.network.AuthApiFactory
 import com.iruda.ecomm.data.auth.repositories.AuthRepositoryImpl
@@ -62,11 +61,6 @@ val dataModule = module {
         database.cartDao()
     }
 
-    single<AuthDao> {
-        val database = get<AppDatabase>()
-        database.authDao()
-    }
-
     // Repository
     single<ProductRepository> {
         ProductRepositoryImpl(
@@ -94,9 +88,9 @@ val dataModule = module {
 
     single<AuthRepository> {
         AuthRepositoryImpl(
-            authDao = get(),
             factory = get(),
-            mapper = get()
+            mapper = get(),
+            context = get()
         )
     }
 

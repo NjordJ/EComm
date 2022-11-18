@@ -1,9 +1,8 @@
 package com.iruda.ecomm.data.auth.repositories
 
+import android.content.Context
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
-import com.iruda.ecomm.data.auth.database.AuthDao
+import com.iruda.ecomm.data.auth.database.userProtoDataStore
 import com.iruda.ecomm.data.auth.mappers.AuthMapper
 import com.iruda.ecomm.data.auth.models.AuthRequestModel
 import com.iruda.ecomm.data.auth.models.AuthResponseModel
@@ -12,19 +11,22 @@ import com.iruda.ecomm.domain.auth.entities.AuthResponse
 import com.iruda.ecomm.domain.auth.repositories.AuthRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
 
 class AuthRepositoryImpl(
-    private val authDao: AuthDao,
     private val factory: AuthApiFactory,
-    private val mapper: AuthMapper
+    private val mapper: AuthMapper,
+    private val context: Context
 ) : AuthRepository {
 
-    override fun getAuthResponse(): LiveData<AuthResponse> {
-        return Transformations.map(authDao.getUserTokenAndId()) {
-            mapper.mapModelToEntity(it)
+    override fun getAuthResponse(): Flow<AuthResponse> {
+        val proto = context.userProtoDataStore.data
+        return proto.map { userProto ->
+            mapper.mapProtoModelToEntity(userProto)
         }
     }
 
@@ -40,6 +42,7 @@ class AuthRepositoryImpl(
                 response: Response<AuthResponseModel>
             ) {
                 val authResponse = response.body()
+                // TODO: Remove Log AuthError
                 Log.d("AuthError", "Code: " + response.code().toString())
                 Log.d("AuthError", "Message: " + response.message())
                 Log.d("AuthError", "Body: " + response.body().toString())
@@ -47,8 +50,15 @@ class AuthRepositoryImpl(
 
                 if (response.isSuccessful && authResponse != null) {
                     CoroutineScope(Dispatchers.IO).launch {
-                        authDao.insertUserInfo(authResponse)
+                        context.userProtoDataStore.updateData { currentUserProto ->
+                            currentUserProto.toBuilder()
+                                .setId(authResponse.id)
+                                .setToken(authResponse.token)
+                                .setIsAuthorized(true)
+                                .build()
+                        }
                     }
+
                 }
 
             }
