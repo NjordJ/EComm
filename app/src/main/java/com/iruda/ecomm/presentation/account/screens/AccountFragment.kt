@@ -6,15 +6,15 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.iruda.ecomm.R
 import com.iruda.ecomm.databinding.FragmentAccountBinding
-import com.iruda.ecomm.presentation.account.viewmodels.LoginViewModel
-import kotlinx.coroutines.launch
+import com.iruda.ecomm.presentation.account.viewmodels.AccountViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AccountFragment : Fragment(), MenuProvider {
+
+    private val viewModel by viewModel<AccountViewModel>()
 
     private var _binding: FragmentAccountBinding? = null
     private val binding: FragmentAccountBinding
@@ -36,6 +36,10 @@ class AccountFragment : Fragment(), MenuProvider {
 
         binding.cardLogin.setOnClickListener {
             launchLoginFragment()
+        }
+
+        binding.imageButtonLogout.setOnClickListener {
+            viewModel.logOutFromAccount()
         }
 
     }

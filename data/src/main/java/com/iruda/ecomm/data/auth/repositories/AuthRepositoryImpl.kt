@@ -12,6 +12,7 @@ import com.iruda.ecomm.domain.auth.repositories.AuthRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -27,6 +28,19 @@ class AuthRepositoryImpl(
         val proto = context.userProtoDataStore.data
         return proto.map { userProto ->
             mapper.mapProtoModelToEntity(userProto)
+        }
+    }
+
+    override fun logOut() {
+        CoroutineScope(Dispatchers.IO).launch {
+            context.userProtoDataStore.updateData { userProto ->
+                userProto.toBuilder()
+                    .clear()
+                    .build()
+            }
+            //TODO: Remove Log UserProto
+            Log.d("UserProto", context.userProtoDataStore.data.first().toString())
+
         }
     }
 

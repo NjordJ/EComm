@@ -48,6 +48,7 @@
                 tools:text="User email" />
 
             <ImageButton
+                android:id="@+id/image_button_logout"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginEnd="8dp"
@@ -55,7 +56,7 @@
                 android:contentDescription="@string/account_logout_button"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_exit"
-                android:visibility="invisible" />
+                android:visibility="visible" />
         </LinearLayout>
 
     </LinearLayout>

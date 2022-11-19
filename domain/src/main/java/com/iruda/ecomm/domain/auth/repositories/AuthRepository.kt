@@ -8,4 +8,6 @@ interface AuthRepository {
     suspend fun authorizeWithEmail(email: String, password: String)
 
     fun getAuthResponse(): Flow<AuthResponse>
+
+    fun logOut()
 }

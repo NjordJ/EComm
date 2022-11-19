@@ -1,5 +1,6 @@
 package com.iruda.ecomm.di
 
+import com.iruda.ecomm.presentation.account.viewmodels.AccountViewModel
 import com.iruda.ecomm.presentation.account.viewmodels.LoginViewModel
 import com.iruda.ecomm.presentation.cart.viewmodels.CartViewModel
 import com.iruda.ecomm.presentation.category.viewmodels.CategoryViewModel
@@ -44,6 +45,13 @@ val appModule = module {
         CartViewModel(
             application = get(),
             getCartUseCase = get()
+        )
+    }
+
+    viewModel<AccountViewModel> {
+        AccountViewModel(
+            application = get(),
+            logOutUseCase = get()
         )
     }
 

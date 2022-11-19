@@ -2,6 +2,7 @@ package com.iruda.ecomm.di
 
 import com.iruda.ecomm.domain.auth.usecases.AuthorizeWithEmailUseCase
 import com.iruda.ecomm.domain.auth.usecases.GetAuthResponseUseCase
+import com.iruda.ecomm.domain.auth.usecases.LogOutUseCase
 import com.iruda.ecomm.domain.cart.usecases.GetCartListUseCase
 import com.iruda.ecomm.domain.cart.usecases.GetCartUseCase
 import com.iruda.ecomm.domain.cart.usecases.LoadCartDataUseCase
@@ -70,6 +71,12 @@ val domainModule = module {
 
     factory<AuthorizeWithEmailUseCase> {
         AuthorizeWithEmailUseCase(
+            repository = get()
+        )
+    }
+
+    factory<LogOutUseCase> {
+        LogOutUseCase(
             repository = get()
         )
     }
