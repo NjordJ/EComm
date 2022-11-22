@@ -51,7 +51,8 @@ val appModule = module {
     viewModel<AccountViewModel> {
         AccountViewModel(
             application = get(),
-            logOutUseCase = get()
+            logOutUseCase = get(),
+            getAuthResponseUseCase = get()
         )
     }
 

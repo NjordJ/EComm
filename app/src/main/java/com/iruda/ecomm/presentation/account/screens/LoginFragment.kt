@@ -37,11 +37,17 @@ class LoginFragment : Fragment() {
         binding.apply {
             textInputEditTextEmail.setText("kminchelle")
             textInputEditTextPassword.setText("0lelplR")
-            buttonLogin.setOnClickListener {
+            buttonSignIn.setOnClickListener {
                 authorizeUser(
                     email = textInputEditTextEmail.text.toString(),
                     password = textInputEditTextPassword.text.toString()
                 )
+                val visibilityArray = intArrayOf(VIEWGONE, VIEWVISIBLE)
+                val action =
+                    LoginFragmentDirections.actionLoginFragmentToAccountFragment(
+                        visibilityArray
+                    )
+                findNavController().navigate(action)
             }
             buttonSignUp.setOnClickListener {
                 lifecycleScope.launch {
@@ -50,7 +56,6 @@ class LoginFragment : Fragment() {
                     Log.d("UserProto", user.first().id.toString())
                     Log.d("UserProto", user.first().token)
                     Log.d("UserProto", user.first().isAuthorized.toString())
-                    //launchRegisterFragment()
                 }
             }
         }
@@ -62,16 +67,15 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun launchRegisterFragment() {
-        val action =
-            LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
-
-        findNavController().navigate(action)
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    companion object {
+
+        private const val VIEWGONE = 8
+        private const val VIEWVISIBLE = 0
     }
 
 }
