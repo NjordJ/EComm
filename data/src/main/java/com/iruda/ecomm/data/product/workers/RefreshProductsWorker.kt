@@ -24,13 +24,14 @@ class RefreshProductsWorker(
                 productDao.insertProductList(products)
             } catch (e: Exception) {
             }
-            delay(10000)
+            delay(DELAY)
         }
     }
 
     companion object {
 
         const val NAME = "RefreshProductWorker"
+        private const val DELAY = 10000L
 
         fun makeRequest(): OneTimeWorkRequest {
             return OneTimeWorkRequestBuilder<RefreshProductsWorker>().build()

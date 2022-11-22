@@ -3,7 +3,7 @@ package com.iruda.ecomm.data.global
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-open class ApiFactory {
+abstract class ApiFactory {
 
     open val retrofit: Retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())

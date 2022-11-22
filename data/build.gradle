@@ -4,6 +4,7 @@ plugins {
 
     id("kotlin-kapt")
     id 'kotlin-parcelize'
+    id "com.google.protobuf" version "0.8.17"
 }
 
 android {
@@ -52,7 +53,8 @@ dependencies {
     kapt("androidx.room:room-compiler:$room_version")
 
     //DataStore
-    api("androidx.datastore:datastore-preferences:$datastore_version")
+    api("androidx.datastore:datastore:$datastore_version")
+    api("com.google.protobuf:protobuf-javalite:$protobuf_version")
 
     // Retrofit + GSON
     api ("com.squareup.retrofit2:retrofit:$retrofit_version")
@@ -61,4 +63,23 @@ dependencies {
     // Workmanager
     api "androidx.work:work-runtime-ktx:$workmanager_version"
 
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:$protobuf_version"
+    }
+
+    // Generates the java Protobuf-lite code for the Protobufs in this project. See
+    // https://github.com/google/protobuf-gradle-plugin#customizing-protobuf-compilation
+    // for more information.
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {
+                    option 'lite'
+                }
+            }
+        }
+    }
 }

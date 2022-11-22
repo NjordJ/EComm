@@ -1,9 +1,13 @@
 package com.iruda.ecomm.domain.auth.repositories
 
-import androidx.lifecycle.LiveData
 import com.iruda.ecomm.domain.auth.entities.AuthResponse
+import kotlinx.coroutines.flow.Flow
 
 interface AuthRepository {
 
-    fun authorizeWithEmail(email: String, password: String): LiveData<AuthResponse>
+    suspend fun authorizeWithEmail(email: String, password: String)
+
+    fun getAuthResponse(): Flow<AuthResponse>
+
+    fun logOut()
 }

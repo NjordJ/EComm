@@ -175,7 +175,8 @@
                     android:layout_marginEnd="32dp"
                     android:layout_weight="2"
                     android:background="@drawable/add_to_cart_button_shape"
-                    android:text="@string/product_info_add_to_cart" />
+                    android:text="@string/product_info_add_to_cart"
+                    android:textAllCaps="false" />
 
             </LinearLayout>
 

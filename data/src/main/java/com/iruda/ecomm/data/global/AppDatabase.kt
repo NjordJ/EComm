@@ -3,6 +3,7 @@ package com.iruda.ecomm.data.global
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.iruda.ecomm.data.auth.models.AuthResponseModel
 import com.iruda.ecomm.data.cart.database.CartDao
 import com.iruda.ecomm.data.cart.database.converters.CartProductConverter
 import com.iruda.ecomm.data.cart.models.CartModel
@@ -16,7 +17,7 @@ import com.iruda.ecomm.data.product.models.ProductModel
 
 @Database(
     entities = [ProductModel::class, ProductImagesModel::class, CategoryModel::class,
-        CartModel::class, CartProductModel::class],
+        CartModel::class, CartProductModel::class, AuthResponseModel::class],
     version = 8,
     exportSchema = false
 )
